@@ -44,20 +44,6 @@ function CoffeeBeanIcon({ className = 'w-4 h-4' }: { className?: string }) {
     );
 }
 
-// 6-dots matrix icon from the top right of the reference
-function DotGridIcon({ className = 'w-6 h-6' }: { className?: string }) {
-    return (
-        <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-            <circle cx="5" cy="5" r="2" />
-            <circle cx="12" cy="5" r="2" />
-            <circle cx="19" cy="5" r="2" />
-            <circle cx="5" cy="12" r="2" />
-            <circle cx="12" cy="12" r="2" />
-            <circle cx="19" cy="12" r="2" />
-        </svg>
-    );
-}
-
 export default function Welcome() {
     const { auth } = usePage<{ auth: Auth }>().props;
 
@@ -272,16 +258,6 @@ export default function Welcome() {
                                     <span>Masuk</span>
                                 </Link>
                             )}
-
-                            {/* 6-Dots Matrix Icon (Scrolls to Contact) */}
-                            <button
-                                type="button"
-                                onClick={() => scrollToSection('kontak')}
-                                title="Hubungi Kami"
-                                className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-xl text-[#7E6351] transition hover:bg-[#EFE8DF]/80 hover:text-[#24140E]"
-                            >
-                                <DotGridIcon className="h-5 w-5" />
-                            </button>
                         </div>
                     </div>
                 </header>

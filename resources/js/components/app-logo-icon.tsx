@@ -12,16 +12,8 @@ export default function AppLogoIcon(props: SVGAttributes<SVGElement>) {
             strokeLinejoin="round"
             xmlns="http://www.w3.org/2000/svg"
         >
-            {/* Steams */}
-            <path d="M6 2v2" />
-            <path d="M10 2v2" />
-            <path d="M14 2v2" />
-            {/* Cup Body */}
-            <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
-            <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" />
-            {/* Saucer */}
-            <line x1="6" x2="14" y1="1" y2="1" opacity="0" />
-            <path d="M6 14h8" strokeWidth="1.5" strokeOpacity="0.5" />
+            <path d="M18.5 5.5a7 7 0 0 0-9.9 0L4.8 9.3a7 7 0 0 0 9.9 9.9l3.8-3.8a7 7 0 0 0 0-9.9z" />
+            <path d="M8.5 8.5c1.5 1.5 2.5 3.5 2.5 5.5s1 4 2.5 5.5" />
         </svg>
     );
 }

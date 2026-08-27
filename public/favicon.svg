@@ -1,37 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
-  <defs>
-    <linearGradient id="coffeeBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#4A2611"/>
-      <stop offset="100%" stop-color="#24140E"/>
-    </linearGradient>
-    <linearGradient id="steamGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" stop-color="#D4A373" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#FAEDCD" stop-opacity="0.2"/>
-    </linearGradient>
-  </defs>
+  <!-- Rounded Squircle Dark Brown Background matching navbar brand -->
+  <rect width="128" height="128" rx="36" fill="#2A1810"/>
   
-  <!-- Rounded Background -->
-  <rect width="128" height="128" rx="28" fill="url(#coffeeBg)"/>
+  <!-- Subtle border highlight -->
+  <rect x="2" y="2" width="124" height="124" rx="34" stroke="#D5C2B1" stroke-opacity="0.2" stroke-width="2" fill="none"/>
   
-  <!-- Steam Lines -->
-  <path d="M48 28 C 44 20, 52 14, 48 8" stroke="url(#steamGrad)" stroke-width="4" stroke-linecap="round" fill="none"/>
-  <path d="M64 24 C 60 16, 68 10, 64 4" stroke="url(#steamGrad)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-  <path d="M80 28 C 76 20, 84 14, 80 8" stroke="url(#steamGrad)" stroke-width="4" stroke-linecap="round" fill="none"/>
-  
-  <!-- Coffee Cup Body -->
-  <path d="M30 42 L36 94 C 37 104, 46 112, 58 112 L70 112 C 82 112, 91 104, 92 94 L98 42 Z" fill="#E6CCB2"/>
-  
-  <!-- Coffee Crema Layer inside Cup -->
-  <ellipse cx="64" cy="42" rx="34" ry="7" fill="#7F4F24"/>
-  <ellipse cx="64" cy="42" rx="30" ry="5" fill="#582F0E"/>
-  
-  <!-- Coffee Cup Handle -->
-  <path d="M95 52 C 112 52, 114 80, 92 84" stroke="#E6CCB2" stroke-width="8" stroke-linecap="round" fill="none"/>
-  
-  <!-- Cup Saucer Base -->
-  <path d="M22 116 C 22 112, 40 110, 64 110 C 88 110, 106 112, 106 116 C 106 120, 88 122, 64 122 C 40 122, 22 120, 22 116 Z" fill="#D4A373"/>
-  
-  <!-- Subtle Coffee Bean Emblem on cup -->
-  <ellipse cx="64" cy="74" rx="9" ry="13" fill="#6B4028" transform="rotate(15 64 74)"/>
-  <path d="M64 62 C 66 68, 62 80, 64 86" stroke="#E6CCB2" stroke-width="1.8" stroke-linecap="round" fill="none" transform="rotate(15 64 74)"/>
+  <!-- Coffee Bean Vector Icon matching navbar header -->
+  <g transform="translate(64, 64) rotate(-15) scale(3.8) translate(-12, -12)">
+    <path 
+      d="M18.5 5.5a7 7 0 0 0-9.9 0L4.8 9.3a7 7 0 0 0 9.9 9.9l3.8-3.8a7 7 0 0 0 0-9.9z" 
+      fill="none" 
+      stroke="#E8DCCF" 
+      stroke-width="2.2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round"
+    />
+    <path 
+      d="M8.5 8.5c1.5 1.5 2.5 3.5 2.5 5.5s1 4 2.5 5.5" 
+      fill="none" 
+      stroke="#E8DCCF" 
+      stroke-width="2.2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round"
+    />
+  </g>
 </svg>
