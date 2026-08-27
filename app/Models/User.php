@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 use Laravel\Fortify\Contracts\PasskeyUser;
 use Laravel\Fortify\PasskeyAuthenticatable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -84,6 +85,10 @@ class User extends Authenticatable implements PasskeyUser
 
         session()->flash('reset_url', $url);
 
-        $this->notify(new ResetPassword($token));
+        try {
+            $this->notify(new ResetPassword($token));
+        } catch (\Throwable $e) {
+            Log::warning('Password reset email transport error: '.$e->getMessage());
+        }
     }
 }
