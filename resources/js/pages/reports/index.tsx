@@ -345,12 +345,24 @@ export default function ReportsIndex({
                                                     Tunai (Cash)
                                                 </h4>
                                                 <p className="text-[11px] text-[#7A6353]">
-                                                    {paymentBreakdown.cash.count} transaksi ({paymentBreakdown.cash.percentage}%)
+                                                    {
+                                                        paymentBreakdown.cash
+                                                            .count
+                                                    }{' '}
+                                                    transaksi (
+                                                    {
+                                                        paymentBreakdown.cash
+                                                            .percentage
+                                                    }
+                                                    %)
                                                 </p>
                                             </div>
                                         </div>
                                         <span className="font-bold text-[#24140E]">
-                                            {paymentBreakdown.cash.revenue_formatted}
+                                            {
+                                                paymentBreakdown.cash
+                                                    .revenue_formatted
+                                            }
                                         </span>
                                     </div>
                                     {/* Progress Bar */}
@@ -376,12 +388,24 @@ export default function ReportsIndex({
                                                     QRIS Statis
                                                 </h4>
                                                 <p className="text-[11px] text-[#7A6353]">
-                                                    {paymentBreakdown.qris.count} transaksi ({paymentBreakdown.qris.percentage}%)
+                                                    {
+                                                        paymentBreakdown.qris
+                                                            .count
+                                                    }{' '}
+                                                    transaksi (
+                                                    {
+                                                        paymentBreakdown.qris
+                                                            .percentage
+                                                    }
+                                                    %)
                                                 </p>
                                             </div>
                                         </div>
                                         <span className="font-bold text-[#24140E]">
-                                            {paymentBreakdown.qris.revenue_formatted}
+                                            {
+                                                paymentBreakdown.qris
+                                                    .revenue_formatted
+                                            }
                                         </span>
                                     </div>
                                     {/* Progress Bar */}
@@ -417,10 +441,18 @@ export default function ReportsIndex({
                                 <table className="w-full text-left text-xs text-[#24140E]">
                                     <thead>
                                         <tr className="border-b border-[#F0E4D8] text-[11px] font-bold tracking-wider text-[#8C6B56] uppercase">
-                                            <th className="py-2.5 pr-3">Rank</th>
-                                            <th className="px-3 py-2.5">Nama Menu</th>
-                                            <th className="px-3 py-2.5 text-center">Terjual</th>
-                                            <th className="py-2.5 pl-3 text-right">Kontribusi Omset</th>
+                                            <th className="py-2.5 pr-3">
+                                                Rank
+                                            </th>
+                                            <th className="px-3 py-2.5">
+                                                Nama Menu
+                                            </th>
+                                            <th className="px-3 py-2.5 text-center">
+                                                Terjual
+                                            </th>
+                                            <th className="py-2.5 pl-3 text-right">
+                                                Kontribusi Omset
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-[#F5ECE2]">
@@ -430,7 +462,8 @@ export default function ReportsIndex({
                                                     colSpan={4}
                                                     className="py-8 text-center text-xs text-[#8C6B56]"
                                                 >
-                                                    Belum ada data penjualan pada periode ini.
+                                                    Belum ada data penjualan
+                                                    pada periode ini.
                                                 </td>
                                             </tr>
                                         ) : (
@@ -451,7 +484,9 @@ export default function ReportsIndex({
                                                         </span>
                                                     </td>
                                                     <td className="py-3 pl-3 text-right font-bold text-[#24140E]">
-                                                        {prod.total_sales_formatted}
+                                                        {
+                                                            prod.total_sales_formatted
+                                                        }
                                                     </td>
                                                 </tr>
                                             ))
@@ -470,7 +505,8 @@ export default function ReportsIndex({
                             <div className="flex items-center gap-2">
                                 <Receipt className="h-5 w-5 text-[#6B4028]" />
                                 <h3 className="font-serif text-lg font-bold text-[#24140E]">
-                                    Rekap Transaksi Pesanan ({recentOrders.length} Transaksi Terakhir)
+                                    Rekap Transaksi Pesanan (
+                                    {recentOrders.length} Transaksi Terakhir)
                                 </h3>
                             </div>
                             <Link
@@ -486,13 +522,23 @@ export default function ReportsIndex({
                             <table className="w-full text-left text-xs text-[#24140E]">
                                 <thead>
                                     <tr className="border-b border-[#F0E4D8] text-[11px] font-bold tracking-wider text-[#8C6B56] uppercase">
-                                        <th className="py-2.5 pr-4">No. Nota</th>
+                                        <th className="py-2.5 pr-4">
+                                            No. Nota
+                                        </th>
                                         <th className="px-4 py-2.5">Waktu</th>
-                                        <th className="px-4 py-2.5">Pelanggan</th>
+                                        <th className="px-4 py-2.5">
+                                            Pelanggan
+                                        </th>
                                         <th className="px-4 py-2.5">Kasir</th>
-                                        <th className="px-4 py-2.5 text-center">Item</th>
-                                        <th className="px-4 py-2.5 text-center">Metode</th>
-                                        <th className="py-2.5 pl-4 text-right">Total</th>
+                                        <th className="px-4 py-2.5 text-center">
+                                            Item
+                                        </th>
+                                        <th className="px-4 py-2.5 text-center">
+                                            Metode
+                                        </th>
+                                        <th className="py-2.5 pl-4 text-right">
+                                            Total
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-[#F5ECE2]">
@@ -526,7 +572,8 @@ export default function ReportsIndex({
                                             <td className="px-4 py-3 text-center">
                                                 <span
                                                     className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase ${
-                                                        ord.payment_method === 'cash'
+                                                        ord.payment_method ===
+                                                        'cash'
                                                             ? 'bg-[#EFE5DA] text-[#6B4028]'
                                                             : 'bg-[#EAF7ED] text-[#2E7D32]'
                                                     }`}

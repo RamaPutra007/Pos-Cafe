@@ -12,7 +12,7 @@ export default function Appearance() {
                 <div className="rounded-3xl border border-[#E5D6C7] bg-[#FFFDF9] p-6 shadow-xs sm:p-8">
                     <div className="border-b border-[#EADCCE] pb-4">
                         <div className="flex items-center gap-2.5">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#FAF3EC] text-[#6B4028] border border-[#E8D7C8]">
+                            <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E8D7C8] bg-[#FAF3EC] text-[#6B4028]">
                                 <Palette className="h-4 w-4" />
                             </div>
                             <div>
@@ -20,7 +20,8 @@ export default function Appearance() {
                                     Preferensi Tampilan & Tema
                                 </h3>
                                 <p className="text-xs text-[#7A6353]">
-                                    Sesuaikan tema visual sistem POS Cafe sesuai kenyamanan mata Anda saat bertugas di kasir.
+                                    Sesuaikan tema visual sistem POS Cafe sesuai
+                                    kenyamanan mata Anda saat bertugas di kasir.
                                 </p>
                             </div>
                         </div>

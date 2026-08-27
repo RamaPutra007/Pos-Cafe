@@ -51,7 +51,7 @@ export default function AppearanceToggleTab({
                         type="button"
                         onClick={() => updateAppearance(value)}
                         className={cn(
-                            'flex flex-col items-start rounded-2xl border p-4 text-left transition duration-200 cursor-pointer',
+                            'flex cursor-pointer flex-col items-start rounded-2xl border p-4 text-left transition duration-200',
                             isSelected
                                 ? 'border-[#6B4028] bg-[#FAF3EC] shadow-xs'
                                 : 'border-[#E2D4C6] bg-[#F7F2EB]/60 hover:border-[#6B4028]/50 hover:bg-[#F7F2EB]',

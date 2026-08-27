@@ -669,7 +669,10 @@ export default function PosIndex({
                         <div className="mt-3.5">
                             <div className="mb-1 flex items-center justify-between">
                                 <label className="block text-[11px] font-bold text-[#7A6353] uppercase">
-                                    Nama Pelanggan <span className="text-[#C53030]">* (Wajib)</span>
+                                    Nama Pelanggan{' '}
+                                    <span className="text-[#C53030]">
+                                        * (Wajib)
+                                    </span>
                                 </label>
                                 {customerName && (
                                     <button
@@ -736,7 +739,8 @@ export default function PosIndex({
                             </div>
                             {customerError && (
                                 <p className="mt-1.5 text-[11px] font-bold text-[#C53030]">
-                                    ⚠️ Nama pelanggan wajib diisi sebelum checkout!
+                                    ⚠️ Nama pelanggan wajib diisi sebelum
+                                    checkout!
                                 </p>
                             )}
                         </div>
@@ -1310,27 +1314,38 @@ export default function PosIndex({
                                         Telp: (021) 555-CAFE • 0812-3456-7890
                                     </p>
                                     <p className="mt-1 font-mono text-[10px] tracking-widest text-gray-400">
-                                        - - - - - - - - - - - - - - - - - - - - - - - -
+                                        - - - - - - - - - - - - - - - - - - - -
+                                        - - - -
                                     </p>
                                 </div>
 
                                 <div className="space-y-0.5 text-[11px]">
                                     <div className="flex justify-between">
-                                        <span className="text-gray-600">No. Nota:</span>
+                                        <span className="text-gray-600">
+                                            No. Nota:
+                                        </span>
                                         <span className="font-bold text-black">
                                             {receiptOrder.order_number}
                                         </span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span className="text-gray-600">Waktu:</span>
-                                        <span>{receiptOrder.created_at_formatted}</span>
+                                        <span className="text-gray-600">
+                                            Waktu:
+                                        </span>
+                                        <span>
+                                            {receiptOrder.created_at_formatted}
+                                        </span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span className="text-gray-600">Kasir:</span>
+                                        <span className="text-gray-600">
+                                            Kasir:
+                                        </span>
                                         <span>{receiptOrder.cashier_name}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span className="text-gray-600">Pelanggan:</span>
+                                        <span className="text-gray-600">
+                                            Pelanggan:
+                                        </span>
                                         <span className="font-semibold text-black">
                                             {receiptOrder.customer_name}
                                         </span>
@@ -1338,18 +1353,23 @@ export default function PosIndex({
                                 </div>
 
                                 <p className="my-1 text-center font-mono text-[10px] tracking-widest text-gray-400">
-                                    - - - - - - - - - - - - - - - - - - - - - - - -
+                                    - - - - - - - - - - - - - - - - - - - - - -
+                                    - -
                                 </p>
 
                                 <div className="space-y-1.5 text-[11px]">
                                     {receiptOrder.items.map((it, idx) => (
-                                        <div key={idx} className="flex items-start justify-between">
+                                        <div
+                                            key={idx}
+                                            className="flex items-start justify-between"
+                                        >
                                             <div className="min-w-0 pr-2">
-                                                <p className="font-bold leading-tight text-black">
+                                                <p className="leading-tight font-bold text-black">
                                                     {it.name}
                                                 </p>
                                                 <p className="text-[10px] text-gray-600">
-                                                    {it.qty} x Rp {numberFormat(it.price)}
+                                                    {it.qty} x Rp{' '}
+                                                    {numberFormat(it.price)}
                                                 </p>
                                             </div>
                                             <span className="font-bold whitespace-nowrap text-black">
@@ -1360,24 +1380,42 @@ export default function PosIndex({
                                 </div>
 
                                 <p className="my-1 text-center font-mono text-[10px] tracking-widest text-gray-400">
-                                    - - - - - - - - - - - - - - - - - - - - - - - -
+                                    - - - - - - - - - - - - - - - - - - - - - -
+                                    - -
                                 </p>
 
                                 <div className="space-y-1 text-[11px]">
                                     <div className="flex justify-between">
-                                        <span className="text-gray-600">Subtotal:</span>
-                                        <span>Rp {numberFormat(receiptOrder.subtotal)}</span>
+                                        <span className="text-gray-600">
+                                            Subtotal:
+                                        </span>
+                                        <span>
+                                            Rp{' '}
+                                            {numberFormat(
+                                                receiptOrder.subtotal,
+                                            )}
+                                        </span>
                                     </div>
                                     {receiptOrder.discount > 0 && (
                                         <div className="flex justify-between font-medium text-red-600">
                                             <span>Diskon:</span>
-                                            <span>-Rp {numberFormat(receiptOrder.discount)}</span>
+                                            <span>
+                                                -Rp{' '}
+                                                {numberFormat(
+                                                    receiptOrder.discount,
+                                                )}
+                                            </span>
                                         </div>
                                     )}
                                     {receiptOrder.tax > 0 && (
                                         <div className="flex justify-between">
-                                            <span className="text-gray-600">PPN (10%):</span>
-                                            <span>Rp {numberFormat(receiptOrder.tax)}</span>
+                                            <span className="text-gray-600">
+                                                PPN (10%):
+                                            </span>
+                                            <span>
+                                                Rp{' '}
+                                                {numberFormat(receiptOrder.tax)}
+                                            </span>
                                         </div>
                                     )}
                                     <p className="my-0.5 text-center font-mono text-[10px] tracking-widest text-gray-400">
@@ -1385,25 +1423,48 @@ export default function PosIndex({
                                     </p>
                                     <div className="flex justify-between text-xs font-black text-black">
                                         <span>TOTAL AKHIR:</span>
-                                        <span>Rp {numberFormat(receiptOrder.total)}</span>
+                                        <span>
+                                            Rp{' '}
+                                            {numberFormat(receiptOrder.total)}
+                                        </span>
                                     </div>
                                     <p className="my-0.5 text-center font-mono text-[10px] tracking-widest text-gray-400">
                                         ========================================
                                     </p>
                                     <div className="flex justify-between text-[10px] text-gray-700">
-                                        <span>Bayar ({receiptOrder.payment_method}):</span>
-                                        <span className="font-bold">Rp {numberFormat(receiptOrder.amount_paid)}</span>
+                                        <span>
+                                            Bayar ({receiptOrder.payment_method}
+                                            ):
+                                        </span>
+                                        <span className="font-bold">
+                                            Rp{' '}
+                                            {numberFormat(
+                                                receiptOrder.amount_paid,
+                                            )}
+                                        </span>
                                     </div>
                                     <div className="flex justify-between text-[10px] text-gray-700">
                                         <span>Kembalian:</span>
-                                        <span className="font-bold">Rp {numberFormat(receiptOrder.change_due)}</span>
+                                        <span className="font-bold">
+                                            Rp{' '}
+                                            {numberFormat(
+                                                receiptOrder.change_due,
+                                            )}
+                                        </span>
                                     </div>
                                 </div>
 
                                 <div className="mt-3 space-y-0.5 border-t border-dashed border-gray-300 pt-2 text-center text-[10px] text-gray-600">
-                                    <p className="font-bold text-black">Terima Kasih Atas Kunjungan Anda!</p>
-                                    <p>WiFi: CafeArtisan_Guest / Pass: nikmatkopi</p>
-                                    <p className="text-[9px] text-gray-500">Instagram: @poscafe.artisan</p>
+                                    <p className="font-bold text-black">
+                                        Terima Kasih Atas Kunjungan Anda!
+                                    </p>
+                                    <p>
+                                        WiFi: CafeArtisan_Guest / Pass:
+                                        nikmatkopi
+                                    </p>
+                                    <p className="text-[9px] text-gray-500">
+                                        Instagram: @poscafe.artisan
+                                    </p>
                                 </div>
                             </div>
 

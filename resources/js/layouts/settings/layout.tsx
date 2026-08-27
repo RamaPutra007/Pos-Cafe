@@ -56,7 +56,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                                 <h3 className="font-serif text-lg font-bold text-[#24140E]">
                                     {auth?.user?.name || 'Pengguna POS Cafe'}
                                 </h3>
-                                <span className="rounded-full bg-[#FAF3EC] px-2.5 py-0.5 text-[10px] font-extrabold text-[#8C4A27] border border-[#E8D7C8] uppercase">
+                                <span className="rounded-full border border-[#E8D7C8] bg-[#FAF3EC] px-2.5 py-0.5 text-[10px] font-extrabold text-[#8C4A27] uppercase">
                                     {auth?.user?.role || 'Admin'}
                                 </span>
                             </div>
@@ -83,7 +83,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                             <Link
                                 key={tab.href}
                                 href={tab.href}
-                                className={`group relative flex items-center gap-2.5 rounded-2xl px-4 py-3 text-xs font-bold transition duration-200 cursor-pointer ${
+                                className={`group relative flex cursor-pointer items-center gap-2.5 rounded-2xl px-4 py-3 text-xs font-bold transition duration-200 ${
                                     tab.isActive
                                         ? 'bg-[#6B4028] text-white shadow-sm'
                                         : 'border border-[#E5D6C7] bg-[#FFFDF9] text-[#6B574B] hover:border-[#6B4028] hover:bg-[#F7F2EB] hover:text-[#24140E]'
@@ -97,7 +97,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                                     }`}
                                 />
                                 <div className="text-left">
-                                    <div className="font-bold leading-tight">
+                                    <div className="leading-tight font-bold">
                                         {tab.title}
                                     </div>
                                     <div

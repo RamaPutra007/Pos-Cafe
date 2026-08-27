@@ -29,7 +29,7 @@ export default function Profile({
                 <div className="rounded-3xl border border-[#E5D6C7] bg-[#FFFDF9] p-6 shadow-xs sm:p-8">
                     <div className="border-b border-[#EADCCE] pb-4">
                         <div className="flex items-center gap-2.5">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#FAF3EC] text-[#6B4028] border border-[#E8D7C8]">
+                            <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E8D7C8] bg-[#FAF3EC] text-[#6B4028]">
                                 <User className="h-4 w-4" />
                             </div>
                             <div>
@@ -37,7 +37,8 @@ export default function Profile({
                                     Informasi Profil
                                 </h3>
                                 <p className="text-xs text-[#7A6353]">
-                                    Perbarui nama lengkap dan alamat email akun kasir / staf Anda.
+                                    Perbarui nama lengkap dan alamat email akun
+                                    kasir / staf Anda.
                                 </p>
                             </div>
                         </div>
@@ -55,7 +56,7 @@ export default function Profile({
                                 <div className="space-y-1.5">
                                     <label
                                         htmlFor="name"
-                                        className="block text-xs font-bold text-[#24140E] uppercase tracking-wider"
+                                        className="block text-xs font-bold tracking-wider text-[#24140E] uppercase"
                                     >
                                         Nama Lengkap
                                     </label>
@@ -81,7 +82,7 @@ export default function Profile({
                                 <div className="space-y-1.5">
                                     <label
                                         htmlFor="email"
-                                        className="block text-xs font-bold text-[#24140E] uppercase tracking-wider"
+                                        className="block text-xs font-bold tracking-wider text-[#24140E] uppercase"
                                     >
                                         Alamat Email
                                     </label>
@@ -108,7 +109,8 @@ export default function Profile({
                                     auth.user.email_verified_at === null && (
                                         <div className="rounded-2xl border border-[#FCD8CC] bg-[#FFF2ED] p-4 text-xs">
                                             <p className="text-[#A45E45]">
-                                                Alamat email Anda belum diverifikasi.{' '}
+                                                Alamat email Anda belum
+                                                diverifikasi.{' '}
                                                 <Link
                                                     href={send()}
                                                     as="button"
@@ -121,7 +123,8 @@ export default function Profile({
                                             {status ===
                                                 'verification-link-sent' && (
                                                 <div className="mt-2 font-bold text-[#2E7D32]">
-                                                    ✓ Tautan verifikasi baru telah dikirim ke email Anda.
+                                                    ✓ Tautan verifikasi baru
+                                                    telah dikirim ke email Anda.
                                                 </div>
                                             )}
                                         </div>

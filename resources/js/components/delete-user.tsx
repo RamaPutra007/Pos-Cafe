@@ -21,7 +21,7 @@ export default function DeleteUser() {
         <div className="rounded-3xl border border-[#FCD8CC] bg-[#FFF8F6] p-6 shadow-xs sm:p-8">
             <div className="border-b border-[#FCD8CC] pb-4">
                 <div className="flex items-center gap-2.5">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#FDE8E8] text-[#C53030] border border-[#FCD8CC]">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#FCD8CC] bg-[#FDE8E8] text-[#C53030]">
                         <AlertTriangle className="h-4 w-4" />
                     </div>
                     <div>
@@ -29,15 +29,18 @@ export default function DeleteUser() {
                             Zona Berbahaya: Hapus Akun
                         </h3>
                         <p className="text-xs text-[#9C3030]">
-                            Tindakan ini permanen. Semua data akun, riwayat login, dan akses sistem akan dihapus.
+                            Tindakan ini permanen. Semua data akun, riwayat
+                            login, dan akses sistem akan dihapus.
                         </p>
                     </div>
                 </div>
             </div>
 
             <div className="mt-5 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-                <p className="text-xs text-[#7A6353] leading-relaxed">
-                    Setelah akun Anda dihapus, seluruh data tidak dapat dipulihkan kembali. Pastikan Anda telah mengonfirmasi dengan pemilik kafe sebelum melanjutkan.
+                <p className="text-xs leading-relaxed text-[#7A6353]">
+                    Setelah akun Anda dihapus, seluruh data tidak dapat
+                    dipulihkan kembali. Pastikan Anda telah mengonfirmasi dengan
+                    pemilik kafe sebelum melanjutkan.
                 </p>
 
                 <Dialog>
@@ -56,7 +59,9 @@ export default function DeleteUser() {
                             Apakah Anda yakin ingin menghapus akun?
                         </DialogTitle>
                         <DialogDescription className="text-xs text-[#7A6353]">
-                            Masukkan kata sandi Anda saat ini untuk mengonfirmasi bahwa Anda benar-benar ingin menghapus akun ini secara permanen.
+                            Masukkan kata sandi Anda saat ini untuk
+                            mengonfirmasi bahwa Anda benar-benar ingin menghapus
+                            akun ini secara permanen.
                         </DialogDescription>
 
                         <Form
@@ -94,7 +99,9 @@ export default function DeleteUser() {
                                         <DialogClose asChild>
                                             <button
                                                 type="button"
-                                                onClick={() => resetAndClearErrors()}
+                                                onClick={() =>
+                                                    resetAndClearErrors()
+                                                }
                                                 className="cursor-pointer rounded-2xl border border-[#D5C2B1] bg-[#F7F2EB] px-4 py-2 text-xs font-bold text-[#24140E] hover:bg-[#EAE0D4]"
                                             >
                                                 Batal
@@ -109,7 +116,9 @@ export default function DeleteUser() {
                                         >
                                             <Trash2 className="h-3.5 w-3.5" />
                                             <span>
-                                                {processing ? 'Menghapus...' : 'Ya, Hapus Akun'}
+                                                {processing
+                                                    ? 'Menghapus...'
+                                                    : 'Ya, Hapus Akun'}
                                             </span>
                                         </button>
                                     </DialogFooter>

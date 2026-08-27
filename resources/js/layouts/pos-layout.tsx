@@ -44,16 +44,16 @@ interface PosLayoutProps {
     headerSubtitle?: string;
     children: React.ReactNode;
     activeNav?:
-    | 'dashboard'
-    | 'pos'
-    | 'orders'
-    | 'customers'
-    | 'menus'
-    | 'inventory'
-    | 'movements'
-    | 'reports'
-    | 'cashiers'
-    | 'settings';
+        | 'dashboard'
+        | 'pos'
+        | 'orders'
+        | 'customers'
+        | 'menus'
+        | 'inventory'
+        | 'movements'
+        | 'reports'
+        | 'cashiers'
+        | 'settings';
     headerActions?: React.ReactNode;
 }
 
@@ -71,7 +71,9 @@ export default function PosLayout({
 
     // Live Real-Time Notifications State
     const [notifications, setNotifications] = useState<LiveNotification[]>([]);
-    const [activeTab, setActiveTab] = useState<'all' | 'orders' | 'stock'>('all');
+    const [activeTab, setActiveTab] = useState<'all' | 'orders' | 'stock'>(
+        'all',
+    );
     const [soundEnabled, setSoundEnabled] = useState<boolean>(() => {
         return localStorage.getItem('pos_cafe_sound_enabled') !== 'false';
     });
@@ -83,7 +85,13 @@ export default function PosLayout({
     // Synthesize gentle cafe chime sound via Web Audio API
     const playCafeChime = () => {
         try {
-            const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+            const AudioCtx =
+                window.AudioContext ||
+                (
+                    window as unknown as {
+                        webkitAudioContext: typeof AudioContext;
+                    }
+                ).webkitAudioContext;
 
             if (!AudioCtx) {
                 return;
@@ -133,14 +141,22 @@ export default function PosLayout({
 
             const data = await res.json();
 
-            if (data.status === 'success' && Array.isArray(data.notifications)) {
+            if (
+                data.status === 'success' &&
+                Array.isArray(data.notifications)
+            ) {
                 const list: LiveNotification[] = data.notifications;
                 setNotifications(list);
 
                 // Detect new incoming order for live toast & sound chime
                 const newest = list[0];
 
-                if (newest && !isFirstLoad.current && previousLatestId.current && newest.id !== previousLatestId.current) {
+                if (
+                    newest &&
+                    !isFirstLoad.current &&
+                    previousLatestId.current &&
+                    newest.id !== previousLatestId.current
+                ) {
                     if (newest.type === 'order_success') {
                         if (soundEnabled) {
                             playCafeChime();
@@ -325,10 +341,11 @@ export default function PosLayout({
 
                 {/* ================= LEFT SIDEBAR ================= */}
                 <aside
-                    className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col justify-between border-r border-[#E2D4C6] bg-[#F7F2EB] p-5 transition-transform duration-300 lg:static lg:translate-x-0 ${isMobileSidebarOpen
+                    className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col justify-between border-r border-[#E2D4C6] bg-[#F7F2EB] p-5 transition-transform duration-300 lg:static lg:translate-x-0 ${
+                        isMobileSidebarOpen
                             ? 'translate-x-0'
                             : '-translate-x-full'
-                        }`}
+                    }`}
                 >
                     <div className="overflow-y-auto pr-1">
                         {/* Sidebar Brand */}
@@ -383,26 +400,29 @@ export default function PosLayout({
                                                 <Link
                                                     key={item.key}
                                                     href={item.href}
-                                                    className={`flex items-center justify-between rounded-2xl px-4 py-2.5 text-sm font-semibold transition duration-150 ${isActive
+                                                    className={`flex items-center justify-between rounded-2xl px-4 py-2.5 text-sm font-semibold transition duration-150 ${
+                                                        isActive
                                                             ? 'bg-[#6B4028] text-white shadow-sm'
                                                             : 'text-[#6B574B] hover:bg-[#EFE8DF] hover:text-[#24140E]'
-                                                        }`}
+                                                    }`}
                                                 >
                                                     <div className="flex items-center gap-3">
                                                         <Icon
-                                                            className={`h-4 w-4 ${isActive
+                                                            className={`h-4 w-4 ${
+                                                                isActive
                                                                     ? 'text-white'
                                                                     : 'text-[#8C6B56]'
-                                                                }`}
+                                                            }`}
                                                         />
                                                         <span>{item.name}</span>
                                                     </div>
                                                     {item.badge && (
                                                         <span
-                                                            className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${isActive
+                                                            className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${
+                                                                isActive
                                                                     ? 'bg-white/20 text-white'
                                                                     : 'bg-[#E5D6C7] text-[#5A3726]'
-                                                                }`}
+                                                            }`}
                                                         >
                                                             {item.badge}
                                                         </span>
@@ -489,8 +509,10 @@ export default function PosLayout({
                                 >
                                     <Bell className="h-4 w-4" />
                                     {unreadCount > 0 && (
-                                        <span className="absolute -top-1 -right-1 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-[#C53030] px-1 text-[9px] font-black text-white shadow-xs animate-pulse">
-                                            {unreadCount > 9 ? '9+' : unreadCount}
+                                        <span className="absolute -top-1 -right-1 flex h-4.5 min-w-4.5 animate-pulse items-center justify-center rounded-full bg-[#C53030] px-1 text-[9px] font-black text-white shadow-xs">
+                                            {unreadCount > 9
+                                                ? '9+'
+                                                : unreadCount}
                                         </span>
                                     )}
                                 </motion.button>
@@ -514,7 +536,7 @@ export default function PosLayout({
                                                 scale: 0.95,
                                             }}
                                             transition={{ duration: 0.15 }}
-                                            className="absolute right-0 mt-2 w-84 sm:w-96 rounded-3xl border border-[#E2D4C6] bg-[#FFFDF9] p-4 shadow-2xl z-50"
+                                            className="absolute right-0 z-50 mt-2 w-84 rounded-3xl border border-[#E2D4C6] bg-[#FFFDF9] p-4 shadow-2xl sm:w-96"
                                         >
                                             {/* Dropdown Header */}
                                             <div className="flex items-center justify-between border-b border-[#F0E4D8] pb-3">
@@ -523,7 +545,7 @@ export default function PosLayout({
                                                         Notifikasi Sistem
                                                     </h4>
                                                     <span className="inline-flex items-center gap-1 rounded-full bg-[#EAF7ED] px-2 py-0.5 text-[9px] font-bold text-[#2E7D32]">
-                                                        <span className="h-1.5 w-1.5 rounded-full bg-[#2E7D32] animate-ping" />
+                                                        <span className="h-1.5 w-1.5 animate-ping rounded-full bg-[#2E7D32]" />
                                                         Live
                                                     </span>
                                                 </div>
@@ -531,11 +553,16 @@ export default function PosLayout({
                                                     <button
                                                         type="button"
                                                         onClick={toggleSound}
-                                                        title={soundEnabled ? 'Matikan Suara Notifikasi' : 'Nyalakan Suara Notifikasi'}
-                                                        className={`flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg transition ${soundEnabled
+                                                        title={
+                                                            soundEnabled
+                                                                ? 'Matikan Suara Notifikasi'
+                                                                : 'Nyalakan Suara Notifikasi'
+                                                        }
+                                                        className={`flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg transition ${
+                                                            soundEnabled
                                                                 ? 'bg-[#F2E8DC] text-[#6B4028] hover:bg-[#E5D7C7]'
                                                                 : 'bg-[#F7F2EB] text-[#A69182] hover:bg-[#EBE2D7]'
-                                                            }`}
+                                                        }`}
                                                     >
                                                         {soundEnabled ? (
                                                             <Volume2 className="h-3.5 w-3.5" />
@@ -546,12 +573,16 @@ export default function PosLayout({
                                                     {unreadCount > 0 && (
                                                         <button
                                                             type="button"
-                                                            onClick={markAllAsRead}
+                                                            onClick={
+                                                                markAllAsRead
+                                                            }
                                                             title="Tandai Semua Dibaca"
-                                                            className="flex items-center gap-1 rounded-lg bg-[#FAF4EE] px-2 py-1 text-[10px] font-bold text-[#6B4028] border border-[#E8D7C8] hover:bg-[#F2E5D8]"
+                                                            className="flex items-center gap-1 rounded-lg border border-[#E8D7C8] bg-[#FAF4EE] px-2 py-1 text-[10px] font-bold text-[#6B4028] hover:bg-[#F2E5D8]"
                                                         >
                                                             <CheckCheck className="h-3 w-3" />
-                                                            <span>Baca Semua</span>
+                                                            <span>
+                                                                Baca Semua
+                                                            </span>
                                                         </button>
                                                     )}
                                                 </div>
@@ -561,31 +592,41 @@ export default function PosLayout({
                                             <div className="mt-2.5 flex items-center gap-1 rounded-2xl bg-[#F7F2EB] p-1 text-[11px] font-bold">
                                                 <button
                                                     type="button"
-                                                    onClick={() => setActiveTab('all')}
-                                                    className={`flex-1 rounded-xl py-1 text-center transition ${activeTab === 'all'
+                                                    onClick={() =>
+                                                        setActiveTab('all')
+                                                    }
+                                                    className={`flex-1 rounded-xl py-1 text-center transition ${
+                                                        activeTab === 'all'
                                                             ? 'bg-white text-[#24140E] shadow-xs'
                                                             : 'text-[#8C6B56] hover:text-[#24140E]'
-                                                        }`}
+                                                    }`}
                                                 >
-                                                    Semua ({notifications.length})
+                                                    Semua (
+                                                    {notifications.length})
                                                 </button>
                                                 <button
                                                     type="button"
-                                                    onClick={() => setActiveTab('orders')}
-                                                    className={`flex-1 rounded-xl py-1 text-center transition ${activeTab === 'orders'
+                                                    onClick={() =>
+                                                        setActiveTab('orders')
+                                                    }
+                                                    className={`flex-1 rounded-xl py-1 text-center transition ${
+                                                        activeTab === 'orders'
                                                             ? 'bg-white text-[#24140E] shadow-xs'
                                                             : 'text-[#8C6B56] hover:text-[#24140E]'
-                                                        }`}
+                                                    }`}
                                                 >
                                                     ☕ Pesanan
                                                 </button>
                                                 <button
                                                     type="button"
-                                                    onClick={() => setActiveTab('stock')}
-                                                    className={`flex-1 rounded-xl py-1 text-center transition ${activeTab === 'stock'
+                                                    onClick={() =>
+                                                        setActiveTab('stock')
+                                                    }
+                                                    className={`flex-1 rounded-xl py-1 text-center transition ${
+                                                        activeTab === 'stock'
                                                             ? 'bg-white text-[#24140E] shadow-xs'
                                                             : 'text-[#8C6B56] hover:text-[#24140E]'
-                                                        }`}
+                                                    }`}
                                                 >
                                                     ⚠️ Stok
                                                 </button>
@@ -593,69 +634,115 @@ export default function PosLayout({
 
                                             {/* Notification Items List */}
                                             <div className="mt-3 max-h-72 space-y-2 overflow-y-auto pr-0.5 text-xs">
-                                                {filteredNotifications.length === 0 ? (
+                                                {filteredNotifications.length ===
+                                                0 ? (
                                                     <div className="py-6 text-center text-[#8C6B56]">
                                                         <Coffee className="mx-auto mb-1.5 h-6 w-6 text-[#C9B5A5]" />
-                                                        <p className="font-medium">Tidak ada notifikasi baru</p>
-                                                        <p className="text-[10px] text-[#A69182]">Semua operasional & stok dalam kondisi prima</p>
+                                                        <p className="font-medium">
+                                                            Tidak ada notifikasi
+                                                            baru
+                                                        </p>
+                                                        <p className="text-[10px] text-[#A69182]">
+                                                            Semua operasional &
+                                                            stok dalam kondisi
+                                                            prima
+                                                        </p>
                                                     </div>
                                                 ) : (
-                                                    filteredNotifications.map((item) => {
-                                                        const isUnread = !seenIds.has(item.id);
+                                                    filteredNotifications.map(
+                                                        (item) => {
+                                                            const isUnread =
+                                                                !seenIds.has(
+                                                                    item.id,
+                                                                );
 
-                                                        return (
-                                                            <Link
-                                                                key={item.id}
-                                                                href={item.link}
-                                                                onClick={() => {
-                                                                    setSeenIds((prev) => new Set([...prev, item.id]));
-                                                                    setNotificationOpen(false);
-                                                                }}
-                                                                className={`group flex items-start gap-2.5 rounded-2xl border p-2.5 transition hover:shadow-xs ${item.severity === 'danger'
-                                                                        ? 'border-[#FADCD9] bg-[#FFF8F7] hover:bg-[#FDE8E8]/70'
-                                                                        : item.severity === 'warning'
-                                                                            ? 'border-[#F6E3B8] bg-[#FFFBF2] hover:bg-[#FDF3E5]/70'
-                                                                            : 'border-[#E5D6C7] bg-[#FDFBF7] hover:bg-[#F5EFEB]'
+                                                            return (
+                                                                <Link
+                                                                    key={
+                                                                        item.id
+                                                                    }
+                                                                    href={
+                                                                        item.link
+                                                                    }
+                                                                    onClick={() => {
+                                                                        setSeenIds(
+                                                                            (
+                                                                                prev,
+                                                                            ) =>
+                                                                                new Set(
+                                                                                    [
+                                                                                        ...prev,
+                                                                                        item.id,
+                                                                                    ],
+                                                                                ),
+                                                                        );
+                                                                        setNotificationOpen(
+                                                                            false,
+                                                                        );
+                                                                    }}
+                                                                    className={`group flex items-start gap-2.5 rounded-2xl border p-2.5 transition hover:shadow-xs ${
+                                                                        item.severity ===
+                                                                        'danger'
+                                                                            ? 'border-[#FADCD9] bg-[#FFF8F7] hover:bg-[#FDE8E8]/70'
+                                                                            : item.severity ===
+                                                                                'warning'
+                                                                              ? 'border-[#F6E3B8] bg-[#FFFBF2] hover:bg-[#FDF3E5]/70'
+                                                                              : 'border-[#E5D6C7] bg-[#FDFBF7] hover:bg-[#F5EFEB]'
                                                                     }`}
-                                                            >
-                                                                <div
-                                                                    className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-xl text-white ${item.severity === 'danger'
-                                                                            ? 'bg-[#C53030]'
-                                                                            : item.severity === 'warning'
-                                                                                ? 'bg-[#C07718]'
-                                                                                : 'bg-[#2E7D32]'
-                                                                        }`}
                                                                 >
-                                                                    {item.severity === 'danger' ? (
-                                                                        <AlertCircle className="h-3.5 w-3.5" />
-                                                                    ) : item.severity === 'warning' ? (
-                                                                        <AlertTriangle className="h-3.5 w-3.5" />
-                                                                    ) : (
-                                                                        <Coffee className="h-3.5 w-3.5" />
-                                                                    )}
-                                                                </div>
-                                                                <div className="min-w-0 flex-1">
-                                                                    <div className="flex items-center justify-between gap-1">
-                                                                        <p className="font-bold text-[#24140E] truncate">
-                                                                            {item.title}
-                                                                        </p>
-                                                                        {isUnread && (
-                                                                            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#C53030]" />
+                                                                    <div
+                                                                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-xl text-white ${
+                                                                            item.severity ===
+                                                                            'danger'
+                                                                                ? 'bg-[#C53030]'
+                                                                                : item.severity ===
+                                                                                    'warning'
+                                                                                  ? 'bg-[#C07718]'
+                                                                                  : 'bg-[#2E7D32]'
+                                                                        }`}
+                                                                    >
+                                                                        {item.severity ===
+                                                                        'danger' ? (
+                                                                            <AlertCircle className="h-3.5 w-3.5" />
+                                                                        ) : item.severity ===
+                                                                          'warning' ? (
+                                                                            <AlertTriangle className="h-3.5 w-3.5" />
+                                                                        ) : (
+                                                                            <Coffee className="h-3.5 w-3.5" />
                                                                         )}
                                                                     </div>
-                                                                    <p className="mt-0.5 text-[11px] leading-tight text-[#7A6353]">
-                                                                        {item.message}
-                                                                    </p>
-                                                                    <div className="mt-1 flex items-center justify-between text-[10px] text-[#A69182]">
-                                                                        <span>{item.time}</span>
-                                                                        <span className="flex items-center gap-0.5 font-bold text-[#6B4028] group-hover:underline">
-                                                                            Buka <ExternalLink className="h-2.5 w-2.5" />
-                                                                        </span>
+                                                                    <div className="min-w-0 flex-1">
+                                                                        <div className="flex items-center justify-between gap-1">
+                                                                            <p className="truncate font-bold text-[#24140E]">
+                                                                                {
+                                                                                    item.title
+                                                                                }
+                                                                            </p>
+                                                                            {isUnread && (
+                                                                                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#C53030]" />
+                                                                            )}
+                                                                        </div>
+                                                                        <p className="mt-0.5 text-[11px] leading-tight text-[#7A6353]">
+                                                                            {
+                                                                                item.message
+                                                                            }
+                                                                        </p>
+                                                                        <div className="mt-1 flex items-center justify-between text-[10px] text-[#A69182]">
+                                                                            <span>
+                                                                                {
+                                                                                    item.time
+                                                                                }
+                                                                            </span>
+                                                                            <span className="flex items-center gap-0.5 font-bold text-[#6B4028] group-hover:underline">
+                                                                                Buka{' '}
+                                                                                <ExternalLink className="h-2.5 w-2.5" />
+                                                                            </span>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </Link>
-                                                        );
-                                                    })
+                                                                </Link>
+                                                            );
+                                                        },
+                                                    )
                                                 )}
                                             </div>
                                         </motion.div>
@@ -668,7 +755,7 @@ export default function PosLayout({
                                 <Link
                                     href="/settings/profile"
                                     title="Buka Pengaturan Akun"
-                                    className="flex items-center gap-2.5 rounded-xl px-1.5 py-0.5 transition hover:bg-[#F7F2EB] cursor-pointer"
+                                    className="flex cursor-pointer items-center gap-2.5 rounded-xl px-1.5 py-0.5 transition hover:bg-[#F7F2EB]"
                                 >
                                     <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#5A3726] text-xs font-bold text-[#FAF3EB]">
                                         {auth?.user?.name
@@ -679,7 +766,8 @@ export default function PosLayout({
                                     </div>
                                     <div className="hidden text-left sm:block">
                                         <div className="text-xs font-bold text-[#24140E]">
-                                            {auth?.user?.name || 'Admin Pos Cafe'}
+                                            {auth?.user?.name ||
+                                                'Admin Pos Cafe'}
                                         </div>
                                         <div className="text-[10px] text-[#8C6B56] capitalize">
                                             {auth?.user?.role || 'Admin'}
@@ -723,11 +811,11 @@ export default function PosLayout({
                                         <h5 className="text-xs font-bold text-[#24140E]">
                                             {liveToast.title}
                                         </h5>
-                                        <span className="rounded-full bg-[#EAF7ED] px-1.5 py-0.2 text-[9px] font-bold text-[#2E7D32]">
+                                        <span className="py-0.2 rounded-full bg-[#EAF7ED] px-1.5 text-[9px] font-bold text-[#2E7D32]">
                                             Baru!
                                         </span>
                                     </div>
-                                    <p className="mt-0.5 text-[11px] text-[#7A6353] line-clamp-1">
+                                    <p className="mt-0.5 line-clamp-1 text-[11px] text-[#7A6353]">
                                         {liveToast.message}
                                     </p>
                                 </div>

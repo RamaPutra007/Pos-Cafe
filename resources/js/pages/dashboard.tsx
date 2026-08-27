@@ -148,7 +148,9 @@ export default function Dashboard({
                                 <p className="mt-2 flex items-center gap-1 text-[11px] font-bold text-[#2E7D32]">
                                     <ArrowUpRight className="h-3.5 w-3.5 shrink-0" />
                                     <span className="truncate">
-                                        Tunai {metrics.cash_revenue_formatted} <br /> QRIS {metrics.qris_revenue_formatted}
+                                        Tunai {metrics.cash_revenue_formatted}{' '}
+                                        <br /> QRIS{' '}
+                                        {metrics.qris_revenue_formatted}
                                     </span>
                                 </p>
                             </div>
@@ -171,17 +173,21 @@ export default function Dashboard({
                                         <p className="text-xs font-medium text-[#7A6353]">
                                             Total Transaksi
                                         </p>
-                                        <span className="rounded-full bg-[#FAF3EC] px-2 py-0.2 text-[9px] font-bold text-[#8C4A27] border border-[#E8D7C8]">
+                                        <span className="py-0.2 rounded-full border border-[#E8D7C8] bg-[#FAF3EC] px-2 text-[9px] font-bold text-[#8C4A27]">
                                             Riwayat
                                         </span>
                                     </div>
                                     <h3 className="mt-1.5 font-serif text-2xl font-bold tracking-tight text-[#24140E] xl:text-3xl">
-                                        {metrics.total_orders} <span className="text-base font-normal text-[#7A6353]">Pesanan</span>
+                                        {metrics.total_orders}{' '}
+                                        <span className="text-base font-normal text-[#7A6353]">
+                                            Pesanan
+                                        </span>
                                     </h3>
                                     <p className="mt-2 flex items-center gap-1 text-[11px] font-bold text-[#2E7D32] hover:underline">
                                         <ArrowUpRight className="h-3.5 w-3.5 shrink-0" />
                                         <span>
-                                            {metrics.today_orders_count || 0} transaksi hari ini • Buka Riwayat
+                                            {metrics.today_orders_count || 0}{' '}
+                                            transaksi hari ini • Buka Riwayat
                                         </span>
                                     </p>
                                 </div>
@@ -257,10 +263,11 @@ export default function Dashboard({
                                     <button
                                         type="button"
                                         onClick={() => setActiveTab('keuangan')}
-                                        className={`rounded-full px-4 py-1.5 text-xs font-semibold transition ${activeTab === 'keuangan'
-                                            ? 'bg-[#6B4028] text-white shadow-xs'
-                                            : 'border border-[#D5C2B1] bg-[#F7F2EB] text-[#6B574B]'
-                                            }`}
+                                        className={`rounded-full px-4 py-1.5 text-xs font-semibold transition ${
+                                            activeTab === 'keuangan'
+                                                ? 'bg-[#6B4028] text-white shadow-xs'
+                                                : 'border border-[#D5C2B1] bg-[#F7F2EB] text-[#6B574B]'
+                                        }`}
                                     >
                                         Keuangan
                                     </button>
@@ -449,7 +456,8 @@ export default function Dashboard({
                                                     colSpan={5}
                                                     className="py-8 text-center text-xs text-[#8C6B56]"
                                                 >
-                                                    Belum ada riwayat pesanan aktif.
+                                                    Belum ada riwayat pesanan
+                                                    aktif.
                                                 </td>
                                             </tr>
                                         ) : (
@@ -463,7 +471,8 @@ export default function Dashboard({
                                                             href={`/orders/${order.id}`}
                                                             className="hover:underline"
                                                         >
-                                                            #{order.order_number}
+                                                            #
+                                                            {order.order_number}
                                                         </Link>
                                                     </td>
                                                     <td className="px-4 py-3.5 font-medium text-[#24140E]">
@@ -477,11 +486,12 @@ export default function Dashboard({
                                                     </td>
                                                     <td className="py-3.5 pl-4">
                                                         <span
-                                                            className={`inline-block rounded-full px-3 py-1 text-[10px] font-bold ${order.status ===
+                                                            className={`inline-block rounded-full px-3 py-1 text-[10px] font-bold ${
+                                                                order.status ===
                                                                 'PAID'
-                                                                ? 'bg-[#EAF7ED] text-[#2E7D32]'
-                                                                : 'bg-[#FDF3E5] text-[#C07718]'
-                                                                }`}
+                                                                    ? 'bg-[#EAF7ED] text-[#2E7D32]'
+                                                                    : 'bg-[#FDF3E5] text-[#C07718]'
+                                                            }`}
                                                         >
                                                             {order.status}
                                                         </span>
@@ -560,19 +570,21 @@ export default function Dashboard({
                                     lowStockProducts.map((p) => (
                                         <div
                                             key={p.id}
-                                            className={`flex items-center justify-between rounded-2xl border p-3 ${p.is_critical
-                                                ? 'border-[#FADCD9] bg-[#FDF7F7]'
-                                                : 'border-[#F6E3B8] bg-[#FFFBF2]'
-                                                }`}
+                                            className={`flex items-center justify-between rounded-2xl border p-3 ${
+                                                p.is_critical
+                                                    ? 'border-[#FADCD9] bg-[#FDF7F7]'
+                                                    : 'border-[#F6E3B8] bg-[#FFFBF2]'
+                                            }`}
                                         >
                                             <span className="text-xs font-bold text-[#24140E]">
                                                 {p.name}
                                             </span>
                                             <span
-                                                className={`rounded-lg px-2.5 py-1 text-[11px] font-extrabold ${p.is_critical
-                                                    ? 'bg-[#FDE8E8] text-[#C53030]'
-                                                    : 'bg-[#FDF3E5] text-[#C07718]'
-                                                    }`}
+                                                className={`rounded-lg px-2.5 py-1 text-[11px] font-extrabold ${
+                                                    p.is_critical
+                                                        ? 'bg-[#FDE8E8] text-[#C53030]'
+                                                        : 'bg-[#FDF3E5] text-[#C07718]'
+                                                }`}
                                             >
                                                 {p.display_stock}
                                             </span>

@@ -47,7 +47,7 @@ export default function ManageTwoFactor(props: Props) {
             <div className="border-b border-[#EADCCE] pb-4">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
-                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#FAF3EC] text-[#6B4028] border border-[#E8D7C8]">
+                        <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E8D7C8] bg-[#FAF3EC] text-[#6B4028]">
                             <Shield className="h-4 w-4" />
                         </div>
                         <div>
@@ -55,7 +55,9 @@ export default function ManageTwoFactor(props: Props) {
                                 Autentikasi Dua Faktor (2FA)
                             </h3>
                             <p className="text-xs text-[#7A6353]">
-                                Tambahkan lapisan keamanan ekstra dengan aplikasi authenticator (Google Authenticator / Authy).
+                                Tambahkan lapisan keamanan ekstra dengan
+                                aplikasi authenticator (Google Authenticator /
+                                Authy).
                             </p>
                         </div>
                     </div>
@@ -75,8 +77,11 @@ export default function ManageTwoFactor(props: Props) {
             <div className="mt-5">
                 {twoFactorEnabled ? (
                     <div className="flex flex-col items-start justify-start space-y-4">
-                        <p className="text-xs text-[#7A6353] leading-relaxed">
-                            Autentikasi dua faktor saat ini aktif. Anda akan diminta memasukkan 6 digit kode keamanan dari aplikasi authenticator ponsel Anda saat melakukan login.
+                        <p className="text-xs leading-relaxed text-[#7A6353]">
+                            Autentikasi dua faktor saat ini aktif. Anda akan
+                            diminta memasukkan 6 digit kode keamanan dari
+                            aplikasi authenticator ponsel Anda saat melakukan
+                            login.
                         </p>
 
                         <div className="relative inline">
@@ -87,7 +92,9 @@ export default function ManageTwoFactor(props: Props) {
                                         disabled={processing}
                                         className="cursor-pointer rounded-2xl bg-[#C53030] px-5 py-2 text-xs font-bold text-white shadow-xs hover:bg-[#A82323] disabled:opacity-60"
                                     >
-                                        {processing ? 'Menonaktifkan...' : 'Nonaktifkan 2FA'}
+                                        {processing
+                                            ? 'Menonaktifkan...'
+                                            : 'Nonaktifkan 2FA'}
                                     </button>
                                 )}
                             </Form>
@@ -101,8 +108,10 @@ export default function ManageTwoFactor(props: Props) {
                     </div>
                 ) : (
                     <div className="flex flex-col items-start justify-start space-y-4">
-                        <p className="text-xs text-[#7A6353] leading-relaxed">
-                            Saat mengaktifkan 2FA, sistem akan meminta token waktu nyata dari ponsel Anda setiap kali Anda masuk ke akun POS Cafe untuk mencegah akses tanpa izin.
+                        <p className="text-xs leading-relaxed text-[#7A6353]">
+                            Saat mengaktifkan 2FA, sistem akan meminta token
+                            waktu nyata dari ponsel Anda setiap kali Anda masuk
+                            ke akun POS Cafe untuk mencegah akses tanpa izin.
                         </p>
 
                         <div>

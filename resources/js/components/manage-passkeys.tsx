@@ -13,14 +13,15 @@ export type Props = {
 const EmptyState = () => {
     return (
         <div className="p-8 text-center">
-            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#FAF3EC] text-[#6B4028] border border-[#E8D7C8]">
+            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#E8D7C8] bg-[#FAF3EC] text-[#6B4028]">
                 <KeyRound className="h-6 w-6" />
             </div>
             <p className="text-xs font-bold text-[#24140E]">
                 Belum ada Kunci Masuk (Passkey)
             </p>
             <p className="mt-1 text-[11px] text-[#7A6353]">
-                Tambahkan Passkey (Fingerprint / Face ID / Windows Hello) untuk login cepat tanpa mengetik kata sandi.
+                Tambahkan Passkey (Fingerprint / Face ID / Windows Hello) untuk
+                login cepat tanpa mengetik kata sandi.
             </p>
         </div>
     );
@@ -48,7 +49,7 @@ export default function ManagePasskeys(props: Props) {
         <div className="rounded-3xl border border-[#E5D6C7] bg-[#FFFDF9] p-6 shadow-xs sm:p-8">
             <div className="border-b border-[#EADCCE] pb-4">
                 <div className="flex items-center gap-2.5">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#FAF3EC] text-[#6B4028] border border-[#E8D7C8]">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E8D7C8] bg-[#FAF3EC] text-[#6B4028]">
                         <KeyRound className="h-4 w-4" />
                     </div>
                     <div>
@@ -56,7 +57,8 @@ export default function ManagePasskeys(props: Props) {
                             Kunci Masuk (Passkeys)
                         </h3>
                         <p className="text-xs text-[#7A6353]">
-                            Kelola perangkat biometrik dan kunci fisik untuk autentikasi instan.
+                            Kelola perangkat biometrik dan kunci fisik untuk
+                            autentikasi instan.
                         </p>
                     </div>
                 </div>

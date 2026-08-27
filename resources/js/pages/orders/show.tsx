@@ -100,12 +100,13 @@ export default function OrderShow({ order }: OrderShowProps) {
                                 #{order.order_number}
                             </h3>
                             <span
-                                className={`rounded-full px-3 py-1 text-xs font-bold ${order.status === 'paid'
+                                className={`rounded-full px-3 py-1 text-xs font-bold ${
+                                    order.status === 'paid'
                                         ? 'bg-[#EAF7ED] text-[#2E7D32]'
                                         : order.status === 'pending'
-                                            ? 'bg-[#FDF3E5] text-[#C07718]'
-                                            : 'bg-[#FDE8E8] text-[#C53030]'
-                                    }`}
+                                          ? 'bg-[#FDF3E5] text-[#C07718]'
+                                          : 'bg-[#FDE8E8] text-[#C53030]'
+                                }`}
                             >
                                 {order.status.toUpperCase()}
                             </span>
@@ -191,18 +192,18 @@ export default function OrderShow({ order }: OrderShowProps) {
                                     </div>
                                     {order.payment.payment_method ===
                                         'cash' && (
-                                            <div className="flex justify-between font-bold text-[#2E7D32]">
-                                                <span>Kembalian:</span>
-                                                <span>
-                                                    Rp{' '}
-                                                    {new Intl.NumberFormat(
-                                                        'id-ID',
-                                                    ).format(
-                                                        order.payment.change_due,
-                                                    )}
-                                                </span>
-                                            </div>
-                                        )}
+                                        <div className="flex justify-between font-bold text-[#2E7D32]">
+                                            <span>Kembalian:</span>
+                                            <span>
+                                                Rp{' '}
+                                                {new Intl.NumberFormat(
+                                                    'id-ID',
+                                                ).format(
+                                                    order.payment.change_due,
+                                                )}
+                                            </span>
+                                        </div>
+                                    )}
                                     {order.payment.reference_number && (
                                         <div>
                                             <span className="text-[#8C6B56]">
@@ -252,16 +253,16 @@ export default function OrderShow({ order }: OrderShowProps) {
                                                         </span>
                                                         {item.temperature ===
                                                             'hot' && (
-                                                                <span className="rounded-full border border-[#FCD8CC] bg-[#FFF2ED] px-2 py-0.5 text-[10px] font-bold text-[#C84A23]">
-                                                                    ☕ Panas
-                                                                </span>
-                                                            )}
+                                                            <span className="rounded-full border border-[#FCD8CC] bg-[#FFF2ED] px-2 py-0.5 text-[10px] font-bold text-[#C84A23]">
+                                                                ☕ Panas
+                                                            </span>
+                                                        )}
                                                         {item.temperature ===
                                                             'ice' && (
-                                                                <span className="rounded-full border border-[#CDEBF8] bg-[#EBF7FC] px-2 py-0.5 text-[10px] font-bold text-[#1F7EAA]">
-                                                                    🧊 Dingin
-                                                                </span>
-                                                            )}
+                                                            <span className="rounded-full border border-[#CDEBF8] bg-[#EBF7FC] px-2 py-0.5 text-[10px] font-bold text-[#1F7EAA]">
+                                                                🧊 Dingin
+                                                            </span>
+                                                        )}
                                                     </div>
                                                 </td>
                                                 <td className="px-4 py-3 text-center font-bold text-[#6B4028]">
@@ -355,29 +356,41 @@ export default function OrderShow({ order }: OrderShowProps) {
                                     Telp: (021) 555-CAFE • 0812-3456-7890
                                 </p>
                                 <p className="mt-1 font-mono text-[10px] tracking-widest text-gray-400">
-                                    - - - - - - - - - - - - - - - - - - - - - - - -
+                                    - - - - - - - - - - - - - - - - - - - - - -
+                                    - -
                                 </p>
                             </div>
 
                             <div className="space-y-0.5 text-[11px]">
                                 <div className="flex justify-between">
-                                    <span className="text-gray-600">No. Nota:</span>
+                                    <span className="text-gray-600">
+                                        No. Nota:
+                                    </span>
                                     <span className="font-bold text-black">
                                         {order.order_number}
                                     </span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-gray-600">Waktu:</span>
+                                    <span className="text-gray-600">
+                                        Waktu:
+                                    </span>
                                     <span>{order.created_at}</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-gray-600">Kasir:</span>
-                                    <span>{order.cashier?.name || 'Kasir'}</span>
+                                    <span className="text-gray-600">
+                                        Kasir:
+                                    </span>
+                                    <span>
+                                        {order.cashier?.name || 'Kasir'}
+                                    </span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-gray-600">Pelanggan:</span>
+                                    <span className="text-gray-600">
+                                        Pelanggan:
+                                    </span>
                                     <span className="font-semibold text-black">
-                                        {order.customer?.name || 'Pelanggan Umum (Walk-in)'}
+                                        {order.customer?.name ||
+                                            'Pelanggan Umum (Walk-in)'}
                                     </span>
                                 </div>
                             </div>
@@ -393,21 +406,31 @@ export default function OrderShow({ order }: OrderShowProps) {
                                         className="flex items-start justify-between"
                                     >
                                         <div className="min-w-0 pr-2">
-                                            <p className="font-bold leading-tight text-black">
+                                            <p className="leading-tight font-bold text-black">
                                                 {it.product_name}
                                                 {it.temperature && (
                                                     <span className="ml-1 text-[10px] font-normal text-gray-600">
-                                                        [{it.temperature === 'hot' ? 'PANAS' : 'DINGIN'}]
+                                                        [
+                                                        {it.temperature ===
+                                                        'hot'
+                                                            ? 'PANAS'
+                                                            : 'DINGIN'}
+                                                        ]
                                                     </span>
                                                 )}
                                             </p>
                                             <p className="text-[10px] text-gray-600">
                                                 {it.quantity} x Rp{' '}
-                                                {new Intl.NumberFormat('id-ID').format(it.price)}
+                                                {new Intl.NumberFormat(
+                                                    'id-ID',
+                                                ).format(it.price)}
                                             </p>
                                         </div>
                                         <span className="font-bold whitespace-nowrap text-black">
-                                            Rp {new Intl.NumberFormat('id-ID').format(it.subtotal)}
+                                            Rp{' '}
+                                            {new Intl.NumberFormat(
+                                                'id-ID',
+                                            ).format(it.subtotal)}
                                         </span>
                                     </div>
                                 ))}
@@ -419,24 +442,37 @@ export default function OrderShow({ order }: OrderShowProps) {
 
                             <div className="space-y-1 text-[11px]">
                                 <div className="flex justify-between">
-                                    <span className="text-gray-600">Subtotal:</span>
+                                    <span className="text-gray-600">
+                                        Subtotal:
+                                    </span>
                                     <span>
-                                        Rp {new Intl.NumberFormat('id-ID').format(order.subtotal)}
+                                        Rp{' '}
+                                        {new Intl.NumberFormat('id-ID').format(
+                                            order.subtotal,
+                                        )}
                                     </span>
                                 </div>
                                 {order.discount_amount > 0 && (
                                     <div className="flex justify-between font-medium text-red-600">
                                         <span>Diskon:</span>
                                         <span>
-                                            -Rp {new Intl.NumberFormat('id-ID').format(order.discount_amount)}
+                                            -Rp{' '}
+                                            {new Intl.NumberFormat(
+                                                'id-ID',
+                                            ).format(order.discount_amount)}
                                         </span>
                                     </div>
                                 )}
                                 {order.tax_amount > 0 && (
                                     <div className="flex justify-between">
-                                        <span className="text-gray-600">PPN (10%):</span>
+                                        <span className="text-gray-600">
+                                            PPN (10%):
+                                        </span>
                                         <span>
-                                            Rp {new Intl.NumberFormat('id-ID').format(order.tax_amount)}
+                                            Rp{' '}
+                                            {new Intl.NumberFormat(
+                                                'id-ID',
+                                            ).format(order.tax_amount)}
                                         </span>
                                     </div>
                                 )}
@@ -445,41 +481,65 @@ export default function OrderShow({ order }: OrderShowProps) {
                                 </p>
                                 <div className="flex justify-between text-xs font-black text-black">
                                     <span>TOTAL AKHIR:</span>
-                                    <span>Rp {new Intl.NumberFormat('id-ID').format(order.total_amount)}</span>
+                                    <span>
+                                        Rp{' '}
+                                        {new Intl.NumberFormat('id-ID').format(
+                                            order.total_amount,
+                                        )}
+                                    </span>
                                 </div>
                                 <p className="my-0.5 text-center font-mono text-[10px] tracking-widest text-gray-400">
                                     ========================================
                                 </p>
                                 <div className="flex justify-between text-[10px] text-gray-700">
                                     <span>Metode Bayar:</span>
-                                    <span className="font-bold uppercase">{order.payment?.payment_method || order.payment_method}</span>
+                                    <span className="font-bold uppercase">
+                                        {order.payment?.payment_method ||
+                                            order.payment_method}
+                                    </span>
                                 </div>
                                 {order.payment && (
                                     <>
                                         <div className="flex justify-between text-[10px] text-gray-700">
                                             <span>Bayar:</span>
                                             <span className="font-bold">
-                                                Rp {new Intl.NumberFormat('id-ID').format(order.payment.amount_paid)}
+                                                Rp{' '}
+                                                {new Intl.NumberFormat(
+                                                    'id-ID',
+                                                ).format(
+                                                    order.payment.amount_paid,
+                                                )}
                                             </span>
                                         </div>
                                         <div className="flex justify-between text-[10px] text-gray-700">
                                             <span>Kembalian:</span>
                                             <span className="font-bold">
-                                                Rp {new Intl.NumberFormat('id-ID').format(order.payment.change_due)}
+                                                Rp{' '}
+                                                {new Intl.NumberFormat(
+                                                    'id-ID',
+                                                ).format(
+                                                    order.payment.change_due,
+                                                )}
                                             </span>
                                         </div>
                                     </>
                                 )}
                                 <div className="flex justify-between text-[10px] text-gray-700">
                                     <span>Status:</span>
-                                    <span className="font-bold text-[#2E7D32] uppercase">{order.status}</span>
+                                    <span className="font-bold text-[#2E7D32] uppercase">
+                                        {order.status}
+                                    </span>
                                 </div>
                             </div>
 
                             <div className="mt-3 space-y-0.5 border-t border-dashed border-gray-300 pt-2 text-center text-[10px] text-gray-600">
-                                <p className="font-bold text-black">Terima Kasih Atas Kunjungan Anda!</p>
+                                <p className="font-bold text-black">
+                                    Terima Kasih Atas Kunjungan Anda!
+                                </p>
                                 <p>WiFi: Cafe_Guest / Pass: nikmatkopi</p>
-                                <p className="text-[9px] text-gray-500">Instagram: @poscafe</p>
+                                <p className="text-[9px] text-gray-500">
+                                    Instagram: @poscafe
+                                </p>
                             </div>
                         </div>
 

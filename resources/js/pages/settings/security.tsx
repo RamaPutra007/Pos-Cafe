@@ -28,7 +28,7 @@ export default function Security(props: Props) {
                 <div className="rounded-3xl border border-[#E5D6C7] bg-[#FFFDF9] p-6 shadow-xs sm:p-8">
                     <div className="border-b border-[#EADCCE] pb-4">
                         <div className="flex items-center gap-2.5">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#FAF3EC] text-[#6B4028] border border-[#E8D7C8]">
+                            <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E8D7C8] bg-[#FAF3EC] text-[#6B4028]">
                                 <Lock className="h-4 w-4" />
                             </div>
                             <div>
@@ -36,7 +36,8 @@ export default function Security(props: Props) {
                                     Perbarui Kata Sandi
                                 </h3>
                                 <p className="text-xs text-[#7A6353]">
-                                    Pastikan akun Anda menggunakan kombinasi kata sandi yang kuat dan aman.
+                                    Pastikan akun Anda menggunakan kombinasi
+                                    kata sandi yang kuat dan aman.
                                 </p>
                             </div>
                         </div>
@@ -69,7 +70,7 @@ export default function Security(props: Props) {
                                 <div className="space-y-1.5">
                                     <label
                                         htmlFor="current_password"
-                                        className="block text-xs font-bold text-[#24140E] uppercase tracking-wider"
+                                        className="block text-xs font-bold tracking-wider text-[#24140E] uppercase"
                                     >
                                         Kata Sandi Saat Ini
                                     </label>
@@ -91,7 +92,7 @@ export default function Security(props: Props) {
                                 <div className="space-y-1.5">
                                     <label
                                         htmlFor="password"
-                                        className="block text-xs font-bold text-[#24140E] uppercase tracking-wider"
+                                        className="block text-xs font-bold tracking-wider text-[#24140E] uppercase"
                                     >
                                         Kata Sandi Baru
                                     </label>
@@ -112,7 +113,7 @@ export default function Security(props: Props) {
                                 <div className="space-y-1.5">
                                     <label
                                         htmlFor="password_confirmation"
-                                        className="block text-xs font-bold text-[#24140E] uppercase tracking-wider"
+                                        className="block text-xs font-bold tracking-wider text-[#24140E] uppercase"
                                     >
                                         Ulangi Kata Sandi Baru
                                     </label>

@@ -154,20 +154,20 @@ export default function OrdersIndex({ orders, filters }: OrdersIndexProps) {
                             status !== 'all' ||
                             paymentMethod !== 'all' ||
                             date) && (
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        setSearch('');
-                                        setStatus('all');
-                                        setPaymentMethod('all');
-                                        setDate('');
-                                        router.get('/orders');
-                                    }}
-                                    className="cursor-pointer rounded-xl border border-[#D5C2B1] bg-[#F7F2EB] px-3 py-2 text-xs font-bold text-[#A24D3D] hover:bg-[#FBEBE8]"
-                                >
-                                    Reset Filter
-                                </button>
-                            )}
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setSearch('');
+                                    setStatus('all');
+                                    setPaymentMethod('all');
+                                    setDate('');
+                                    router.get('/orders');
+                                }}
+                                className="cursor-pointer rounded-xl border border-[#D5C2B1] bg-[#F7F2EB] px-3 py-2 text-xs font-bold text-[#A24D3D] hover:bg-[#FBEBE8]"
+                            >
+                                Reset Filter
+                            </button>
+                        )}
                     </div>
                 </div>
 
@@ -234,13 +234,14 @@ export default function OrdersIndex({ orders, filters }: OrdersIndexProps) {
                                             </td>
                                             <td className="px-4 py-3.5">
                                                 <span
-                                                    className={`inline-block rounded-full px-3 py-1 text-[10px] font-bold ${order.status === 'paid'
+                                                    className={`inline-block rounded-full px-3 py-1 text-[10px] font-bold ${
+                                                        order.status === 'paid'
                                                             ? 'bg-[#EAF7ED] text-[#2E7D32]'
                                                             : order.status ===
                                                                 'pending'
-                                                                ? 'bg-[#FDF3E5] text-[#C07718]'
-                                                                : 'bg-[#FDE8E8] text-[#C53030]'
-                                                        }`}
+                                                              ? 'bg-[#FDF3E5] text-[#C07718]'
+                                                              : 'bg-[#FDE8E8] text-[#C53030]'
+                                                    }`}
                                                 >
                                                     {order.status.toUpperCase()}
                                                 </span>
@@ -268,20 +269,20 @@ export default function OrdersIndex({ orders, filters }: OrdersIndexProps) {
                                                     </Link>
                                                     {order.status !==
                                                         'cancelled' && (
-                                                            <button
-                                                                type="button"
-                                                                title="Batalkan Pesanan"
-                                                                onClick={() =>
-                                                                    handleCancelOrder(
-                                                                        order.id,
-                                                                        order.order_number,
-                                                                    )
-                                                                }
-                                                                className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-xl border border-[#FADCD9] bg-[#FDF7F7] text-[#C53030] transition hover:bg-[#FDE8E8]"
-                                                            >
-                                                                <XCircle className="h-4 w-4" />
-                                                            </button>
-                                                        )}
+                                                        <button
+                                                            type="button"
+                                                            title="Batalkan Pesanan"
+                                                            onClick={() =>
+                                                                handleCancelOrder(
+                                                                    order.id,
+                                                                    order.order_number,
+                                                                )
+                                                            }
+                                                            className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-xl border border-[#FADCD9] bg-[#FDF7F7] text-[#C53030] transition hover:bg-[#FDE8E8]"
+                                                        >
+                                                            <XCircle className="h-4 w-4" />
+                                                        </button>
+                                                    )}
                                                 </div>
                                             </td>
                                         </tr>
@@ -301,12 +302,13 @@ export default function OrdersIndex({ orders, filters }: OrdersIndexProps) {
                                     dangerouslySetInnerHTML={{
                                         __html: link.label,
                                     }}
-                                    className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition ${link.active
+                                    className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition ${
+                                        link.active
                                             ? 'bg-[#6B4028] text-white shadow-xs'
                                             : link.url
-                                                ? 'border border-[#D5C2B1] bg-[#F7F2EB] text-[#6B574B] hover:bg-[#EAE0D4]'
-                                                : 'cursor-not-allowed text-gray-400'
-                                        }`}
+                                              ? 'border border-[#D5C2B1] bg-[#F7F2EB] text-[#6B574B] hover:bg-[#EAE0D4]'
+                                              : 'cursor-not-allowed text-gray-400'
+                                    }`}
                                 />
                             ))}
                         </div>
@@ -334,27 +336,36 @@ export default function OrdersIndex({ orders, filters }: OrdersIndexProps) {
                                     Telp: (021) 555-CAFE • 0812-3456-7890
                                 </p>
                                 <p className="mt-1 font-mono text-[10px] tracking-widest text-gray-400">
-                                    - - - - - - - - - - - - - - - - - - - - - - - -
+                                    - - - - - - - - - - - - - - - - - - - - - -
+                                    - -
                                 </p>
                             </div>
 
                             <div className="space-y-0.5 text-[11px]">
                                 <div className="flex justify-between">
-                                    <span className="text-gray-600">No. Nota:</span>
+                                    <span className="text-gray-600">
+                                        No. Nota:
+                                    </span>
                                     <span className="font-bold text-black">
                                         {selectedReceipt.order_number}
                                     </span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-gray-600">Waktu:</span>
+                                    <span className="text-gray-600">
+                                        Waktu:
+                                    </span>
                                     <span>{selectedReceipt.created_at}</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-gray-600">Kasir:</span>
+                                    <span className="text-gray-600">
+                                        Kasir:
+                                    </span>
                                     <span>{selectedReceipt.cashier_name}</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-gray-600">Pelanggan:</span>
+                                    <span className="text-gray-600">
+                                        Pelanggan:
+                                    </span>
                                     <span className="font-semibold text-black">
                                         {selectedReceipt.customer_name}
                                     </span>
@@ -372,21 +383,31 @@ export default function OrdersIndex({ orders, filters }: OrdersIndexProps) {
                                         className="flex items-start justify-between"
                                     >
                                         <div className="min-w-0 pr-2">
-                                            <p className="font-bold leading-tight text-black">
+                                            <p className="leading-tight font-bold text-black">
                                                 {it.name}
                                                 {it.temperature && (
                                                     <span className="ml-1 text-[10px] font-normal text-gray-600">
-                                                        [{it.temperature === 'hot' ? 'PANAS' : 'DINGIN'}]
+                                                        [
+                                                        {it.temperature ===
+                                                        'hot'
+                                                            ? 'PANAS'
+                                                            : 'DINGIN'}
+                                                        ]
                                                     </span>
                                                 )}
                                             </p>
                                             <p className="text-[10px] text-gray-600">
                                                 {it.quantity} x Rp{' '}
-                                                {new Intl.NumberFormat('id-ID').format(it.price)}
+                                                {new Intl.NumberFormat(
+                                                    'id-ID',
+                                                ).format(it.price)}
                                             </p>
                                         </div>
                                         <span className="font-bold whitespace-nowrap text-black">
-                                            Rp {new Intl.NumberFormat('id-ID').format(it.subtotal)}
+                                            Rp{' '}
+                                            {new Intl.NumberFormat(
+                                                'id-ID',
+                                            ).format(it.subtotal)}
                                         </span>
                                     </div>
                                 ))}
@@ -398,24 +419,41 @@ export default function OrdersIndex({ orders, filters }: OrdersIndexProps) {
 
                             <div className="space-y-1 text-[11px]">
                                 <div className="flex justify-between">
-                                    <span className="text-gray-600">Subtotal:</span>
+                                    <span className="text-gray-600">
+                                        Subtotal:
+                                    </span>
                                     <span>
-                                        Rp {new Intl.NumberFormat('id-ID').format(selectedReceipt.subtotal)}
+                                        Rp{' '}
+                                        {new Intl.NumberFormat('id-ID').format(
+                                            selectedReceipt.subtotal,
+                                        )}
                                     </span>
                                 </div>
                                 {selectedReceipt.discount_amount > 0 && (
                                     <div className="flex justify-between font-medium text-red-600">
                                         <span>Diskon:</span>
                                         <span>
-                                            -Rp {new Intl.NumberFormat('id-ID').format(selectedReceipt.discount_amount)}
+                                            -Rp{' '}
+                                            {new Intl.NumberFormat(
+                                                'id-ID',
+                                            ).format(
+                                                selectedReceipt.discount_amount,
+                                            )}
                                         </span>
                                     </div>
                                 )}
                                 {selectedReceipt.tax_amount > 0 && (
                                     <div className="flex justify-between">
-                                        <span className="text-gray-600">PPN (10%):</span>
+                                        <span className="text-gray-600">
+                                            PPN (10%):
+                                        </span>
                                         <span>
-                                            Rp {new Intl.NumberFormat('id-ID').format(selectedReceipt.tax_amount)}
+                                            Rp{' '}
+                                            {new Intl.NumberFormat(
+                                                'id-ID',
+                                            ).format(
+                                                selectedReceipt.tax_amount,
+                                            )}
                                         </span>
                                     </div>
                                 )}
@@ -424,25 +462,37 @@ export default function OrdersIndex({ orders, filters }: OrdersIndexProps) {
                                 </p>
                                 <div className="flex justify-between text-xs font-black text-black">
                                     <span>TOTAL AKHIR:</span>
-                                    <span>{selectedReceipt.total_formatted}</span>
+                                    <span>
+                                        {selectedReceipt.total_formatted}
+                                    </span>
                                 </div>
                                 <p className="my-0.5 text-center font-mono text-[10px] tracking-widest text-gray-400">
                                     ========================================
                                 </p>
                                 <div className="flex justify-between text-[10px] text-gray-700">
                                     <span>Metode Bayar:</span>
-                                    <span className="font-bold uppercase">{selectedReceipt.payment_method}</span>
+                                    <span className="font-bold uppercase">
+                                        {selectedReceipt.payment_method}
+                                    </span>
                                 </div>
                                 <div className="flex justify-between text-[10px] text-gray-700">
                                     <span>Status:</span>
-                                    <span className="font-bold text-[#2E7D32] uppercase">{selectedReceipt.status}</span>
+                                    <span className="font-bold text-[#2E7D32] uppercase">
+                                        {selectedReceipt.status}
+                                    </span>
                                 </div>
                             </div>
 
                             <div className="mt-3 space-y-0.5 border-t border-dashed border-gray-300 pt-2 text-center text-[10px] text-gray-600">
-                                <p className="font-bold text-black">Terima Kasih Atas Kunjungan Anda!</p>
-                                <p>WiFi: CafeArtisan_Guest / Pass: nikmatkopi</p>
-                                <p className="text-[9px] text-gray-500">Instagram: @poscafe.artisan</p>
+                                <p className="font-bold text-black">
+                                    Terima Kasih Atas Kunjungan Anda!
+                                </p>
+                                <p>
+                                    WiFi: CafeArtisan_Guest / Pass: nikmatkopi
+                                </p>
+                                <p className="text-[9px] text-gray-500">
+                                    Instagram: @poscafe.artisan
+                                </p>
                             </div>
                         </div>
 
