@@ -3,7 +3,6 @@ import { Toaster } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { initializeTheme } from '@/hooks/use-appearance';
 import AppLayout from '@/layouts/app-layout';
-import AuthLayout from '@/layouts/auth-layout';
 import SettingsLayout from '@/layouts/settings/layout';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
@@ -13,7 +12,7 @@ createInertiaApp({
     layout: (name) => {
         switch (true) {
             case name === 'welcome' ||
-                name === 'auth/login' ||
+                name.startsWith('auth/') ||
                 name === 'dashboard' ||
                 name.startsWith('pos/') ||
                 name.startsWith('orders/') ||
@@ -23,8 +22,6 @@ createInertiaApp({
                 name.startsWith('reports/') ||
                 name.startsWith('cashiers/'):
                 return null;
-            case name.startsWith('auth/'):
-                return AuthLayout;
             case name.startsWith('settings/'):
                 return SettingsLayout;
             default:
