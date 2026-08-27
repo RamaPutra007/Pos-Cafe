@@ -261,17 +261,17 @@ export default function Login({ status, canResetPassword }: Props) {
                                                     htmlFor="remember"
                                                     className="cursor-pointer text-xs font-medium text-[#5C3D2E]"
                                                 >
-                                                    Remember me
+                                                    Ingat saya
                                                 </Label>
                                             </div>
 
-                                            {canResetPassword && (
+                                            {canResetPassword !== false && (
                                                 <Link
                                                     href={request()}
                                                     tabIndex={5}
                                                     className="text-xs font-semibold text-[#7A4B2F] transition hover:text-[#24140E] hover:underline"
                                                 >
-                                                    Forgot password?
+                                                    Lupa kata sandi?
                                                 </Link>
                                             )}
                                         </div>
