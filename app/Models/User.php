@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Database\Factories\UserFactory;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -67,5 +68,22 @@ class User extends Authenticatable implements PasskeyUser
     public function isCashier(): bool
     {
         return $this->role === 'cashier';
+    }
+
+    /**
+     * Send the password reset notification and flash direct reset URL for development convenience.
+     *
+     * @param  string  $token
+     */
+    public function sendPasswordResetNotification(#[\SensitiveParameter] $token): void
+    {
+        $url = route('password.reset', [
+            'token' => $token,
+            'email' => $this->getEmailForPasswordReset(),
+        ]);
+
+        session()->flash('reset_url', $url);
+
+        $this->notify(new ResetPassword($token));
     }
 }
