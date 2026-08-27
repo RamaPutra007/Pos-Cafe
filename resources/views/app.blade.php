@@ -30,9 +30,11 @@
             }
         </style>
 
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
-        <link rel="alternate icon" href="/favicon.ico">
-        <link rel="apple-touch-icon" href="/favicon.svg?v=2">
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg?v={{ file_exists(public_path('favicon.svg')) ? filemtime(public_path('favicon.svg')) : '1' }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v={{ file_exists(public_path('favicon-32x32.png')) ? filemtime(public_path('favicon-32x32.png')) : '1' }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v={{ file_exists(public_path('favicon-16x16.png')) ? filemtime(public_path('favicon-16x16.png')) : '1' }}">
+        <link rel="shortcut icon" href="/favicon.ico?v={{ file_exists(public_path('favicon.ico')) ? filemtime(public_path('favicon.ico')) : '1' }}">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v={{ file_exists(public_path('apple-touch-icon.png')) ? filemtime(public_path('apple-touch-icon.png')) : '1' }}">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
