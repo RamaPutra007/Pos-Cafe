@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\CashierController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PosController;
 use App\Http\Controllers\ReportController;
@@ -12,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'welcome')->name('home');
 
-use App\Http\Controllers\NotificationController;
+// Direct password reset flow without external email dependency
+Route::get('forgot-password', [PasswordResetController::class, 'create'])->name('password.request');
+Route::post('forgot-password', [PasswordResetController::class, 'store'])->name('password.email');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // 0. Live Notifications
