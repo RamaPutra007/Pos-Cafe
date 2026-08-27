@@ -11,7 +11,9 @@ function Toaster({ ...props }: ToasterProps) {
         <Sonner
             theme={appearance}
             className="toaster group"
-            position="bottom-right"
+            position="top-center"
+            richColors
+            closeButton
             style={
                 {
                     '--normal-bg': 'var(--popover)',

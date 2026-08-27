@@ -104,10 +104,10 @@ export default function Login({ status, canResetPassword }: Props) {
                     <div className="mb-6 flex items-center justify-between sm:mb-8">
                         <div className="inline-flex items-center gap-2 rounded-full border border-amber-900/20 bg-[#5A3726] px-4 py-1.5 text-xs font-semibold tracking-wider text-[#FAF3EB] shadow-sm">
                             <span className="font-serif text-sm italic">
-                                coffee
+                                Pos
                             </span>
                             <span className="text-[10px] text-amber-200/80 uppercase">
-                                pos
+                                Cafe
                             </span>
                         </div>
 

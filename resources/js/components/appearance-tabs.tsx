@@ -11,35 +11,73 @@ export default function AppearanceToggleTab({
 }: HTMLAttributes<HTMLDivElement>) {
     const { appearance, updateAppearance } = useAppearance();
 
-    const tabs: { value: Appearance; icon: LucideIcon; label: string }[] = [
-        { value: 'light', icon: Sun, label: 'Light' },
-        { value: 'dark', icon: Moon, label: 'Dark' },
-        { value: 'system', icon: Monitor, label: 'System' },
+    const tabs: {
+        value: Appearance;
+        icon: LucideIcon;
+        label: string;
+        desc: string;
+    }[] = [
+        {
+            value: 'light',
+            icon: Sun,
+            label: 'Terang (Light)',
+            desc: 'Nuansa cerah krem artisan hangat',
+        },
+        {
+            value: 'dark',
+            icon: Moon,
+            label: 'Gelap (Dark)',
+            desc: 'Nuansa kopi espresso malam hari',
+        },
+        {
+            value: 'system',
+            icon: Monitor,
+            label: 'Sistem (Auto)',
+            desc: 'Menyesuaikan tema perangkat Anda',
+        },
     ];
 
     return (
         <div
-            className={cn(
-                'inline-flex gap-1 rounded-lg bg-neutral-100 p-1 dark:bg-neutral-800',
-                className,
-            )}
+            className={cn('grid grid-cols-1 gap-3 sm:grid-cols-3', className)}
             {...props}
         >
-            {tabs.map(({ value, icon: Icon, label }) => (
-                <button
-                    key={value}
-                    onClick={() => updateAppearance(value)}
-                    className={cn(
-                        'flex items-center rounded-md px-3.5 py-1.5 transition-colors',
-                        appearance === value
-                            ? 'bg-white shadow-xs dark:bg-neutral-700 dark:text-neutral-100'
-                            : 'text-neutral-500 hover:bg-neutral-200/60 hover:text-black dark:text-neutral-400 dark:hover:bg-neutral-700/60',
-                    )}
-                >
-                    <Icon className="-ml-1 h-4 w-4" />
-                    <span className="ml-1.5 text-sm">{label}</span>
-                </button>
-            ))}
+            {tabs.map(({ value, icon: Icon, label, desc }) => {
+                const isSelected = appearance === value;
+
+                return (
+                    <button
+                        key={value}
+                        type="button"
+                        onClick={() => updateAppearance(value)}
+                        className={cn(
+                            'flex flex-col items-start rounded-2xl border p-4 text-left transition duration-200 cursor-pointer',
+                            isSelected
+                                ? 'border-[#6B4028] bg-[#FAF3EC] shadow-xs'
+                                : 'border-[#E2D4C6] bg-[#F7F2EB]/60 hover:border-[#6B4028]/50 hover:bg-[#F7F2EB]',
+                        )}
+                    >
+                        <div
+                            className={cn(
+                                'flex h-10 w-10 items-center justify-center rounded-xl transition',
+                                isSelected
+                                    ? 'bg-[#6B4028] text-white shadow-xs'
+                                    : 'bg-[#E5D6C7] text-[#6B574B]',
+                            )}
+                        >
+                            <Icon className="h-5 w-5" />
+                        </div>
+                        <div className="mt-3">
+                            <h4 className="text-xs font-bold text-[#24140E]">
+                                {label}
+                            </h4>
+                            <p className="mt-0.5 text-[11px] text-[#7A6353]">
+                                {desc}
+                            </p>
+                        </div>
+                    </button>
+                );
+            })}
         </div>
     );
 }

@@ -1,4 +1,5 @@
 import type { Auth } from '@/types/auth';
+import type { FlashToast } from '@/types/ui';
 
 declare module 'react' {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -13,6 +14,12 @@ declare module '@inertiajs/core' {
             name: string;
             auth: Auth;
             sidebarOpen: boolean;
+            flash?: {
+                toast?: FlashToast;
+                status?: string;
+                success?: string;
+                error?: string;
+            };
             [key: string]: unknown;
         };
     }

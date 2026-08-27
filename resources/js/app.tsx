@@ -12,12 +12,21 @@ createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
     layout: (name) => {
         switch (true) {
-            case name === 'welcome' || name === 'auth/login':
+            case name === 'welcome' ||
+                name === 'auth/login' ||
+                name === 'dashboard' ||
+                name.startsWith('pos/') ||
+                name.startsWith('orders/') ||
+                name.startsWith('menus/') ||
+                name.startsWith('inventory/') ||
+                name.startsWith('customers/') ||
+                name.startsWith('reports/') ||
+                name.startsWith('cashiers/'):
                 return null;
             case name.startsWith('auth/'):
                 return AuthLayout;
             case name.startsWith('settings/'):
-                return [AppLayout, SettingsLayout];
+                return SettingsLayout;
             default:
                 return AppLayout;
         }
@@ -32,7 +41,7 @@ createInertiaApp({
         );
     },
     progress: {
-        color: '#4B5563',
+        color: '#6B4028',
     },
 });
 

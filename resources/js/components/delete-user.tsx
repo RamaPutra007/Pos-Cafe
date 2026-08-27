@@ -1,10 +1,9 @@
 import { Form } from '@inertiajs/react';
+import { AlertTriangle, Trash2 } from 'lucide-react';
 import { useRef } from 'react';
 import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
-import Heading from '@/components/heading';
 import InputError from '@/components/input-error';
 import PasswordInput from '@/components/password-input';
-import { Button } from '@/components/ui/button';
 import {
     Dialog,
     DialogClose,
@@ -14,44 +13,50 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
-import { Label } from '@/components/ui/label';
 
 export default function DeleteUser() {
     const passwordInput = useRef<HTMLInputElement>(null);
 
     return (
-        <div className="space-y-6">
-            <Heading
-                variant="small"
-                title="Delete account"
-                description="Delete your account and all of its resources"
-            />
-            <div className="space-y-4 rounded-lg border border-red-100 bg-red-50 p-4 dark:border-red-200/10 dark:bg-red-700/10">
-                <div className="relative space-y-0.5 text-red-600 dark:text-red-100">
-                    <p className="font-medium">Warning</p>
-                    <p className="text-sm">
-                        Please proceed with caution, this cannot be undone.
-                    </p>
+        <div className="rounded-3xl border border-[#FCD8CC] bg-[#FFF8F6] p-6 shadow-xs sm:p-8">
+            <div className="border-b border-[#FCD8CC] pb-4">
+                <div className="flex items-center gap-2.5">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#FDE8E8] text-[#C53030] border border-[#FCD8CC]">
+                        <AlertTriangle className="h-4 w-4" />
+                    </div>
+                    <div>
+                        <h3 className="font-serif text-lg font-bold text-[#C53030]">
+                            Zona Berbahaya: Hapus Akun
+                        </h3>
+                        <p className="text-xs text-[#9C3030]">
+                            Tindakan ini permanen. Semua data akun, riwayat login, dan akses sistem akan dihapus.
+                        </p>
+                    </div>
                 </div>
+            </div>
+
+            <div className="mt-5 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+                <p className="text-xs text-[#7A6353] leading-relaxed">
+                    Setelah akun Anda dihapus, seluruh data tidak dapat dipulihkan kembali. Pastikan Anda telah mengonfirmasi dengan pemilik kafe sebelum melanjutkan.
+                </p>
 
                 <Dialog>
                     <DialogTrigger asChild>
-                        <Button
-                            variant="destructive"
+                        <button
+                            type="button"
                             data-test="delete-user-button"
+                            className="inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-2xl bg-[#C53030] px-5 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-[#A82323]"
                         >
-                            Delete account
-                        </Button>
+                            <Trash2 className="h-4 w-4" />
+                            <span>Hapus Akun Saya</span>
+                        </button>
                     </DialogTrigger>
-                    <DialogContent>
-                        <DialogTitle>
-                            Are you sure you want to delete your account?
+                    <DialogContent className="rounded-3xl border border-[#E5D6C7] bg-[#FFFDF9] p-6 sm:max-w-md">
+                        <DialogTitle className="font-serif text-lg font-bold text-[#24140E]">
+                            Apakah Anda yakin ingin menghapus akun?
                         </DialogTitle>
-                        <DialogDescription>
-                            Once your account is deleted, all of its resources
-                            and data will also be permanently deleted. Please
-                            enter your password to confirm you would like to
-                            permanently delete your account.
+                        <DialogDescription className="text-xs text-[#7A6353]">
+                            Masukkan kata sandi Anda saat ini untuk mengonfirmasi bahwa Anda benar-benar ingin menghapus akun ini secara permanen.
                         </DialogDescription>
 
                         <Form
@@ -61,53 +66,52 @@ export default function DeleteUser() {
                             }}
                             onError={() => passwordInput.current?.focus()}
                             resetOnSuccess
-                            className="space-y-6"
+                            className="mt-4 space-y-4"
                         >
                             {({ resetAndClearErrors, processing, errors }) => (
                                 <>
-                                    <div className="grid gap-2">
-                                        <Label
-                                            htmlFor="password"
-                                            className="sr-only"
+                                    <div className="space-y-1.5">
+                                        <label
+                                            htmlFor="delete_password"
+                                            className="block text-xs font-bold text-[#24140E]"
                                         >
-                                            Password
-                                        </Label>
+                                            Konfirmasi Kata Sandi
+                                        </label>
 
                                         <PasswordInput
-                                            id="password"
+                                            id="delete_password"
                                             name="password"
                                             ref={passwordInput}
-                                            placeholder="Password"
+                                            placeholder="Masukkan kata sandi Anda..."
                                             autoComplete="current-password"
+                                            className="rounded-2xl border-[#E2D4C6] bg-[#F7F2EB] py-2 text-xs focus:border-[#C53030] focus:bg-white"
                                         />
 
                                         <InputError message={errors.password} />
                                     </div>
 
-                                    <DialogFooter className="gap-2">
+                                    <DialogFooter className="mt-4 flex gap-2 sm:justify-end">
                                         <DialogClose asChild>
-                                            <Button
-                                                variant="secondary"
-                                                onClick={() =>
-                                                    resetAndClearErrors()
-                                                }
+                                            <button
+                                                type="button"
+                                                onClick={() => resetAndClearErrors()}
+                                                className="cursor-pointer rounded-2xl border border-[#D5C2B1] bg-[#F7F2EB] px-4 py-2 text-xs font-bold text-[#24140E] hover:bg-[#EAE0D4]"
                                             >
-                                                Cancel
-                                            </Button>
+                                                Batal
+                                            </button>
                                         </DialogClose>
 
-                                        <Button
-                                            variant="destructive"
+                                        <button
+                                            type="submit"
                                             disabled={processing}
-                                            asChild
+                                            data-test="confirm-delete-user-button"
+                                            className="inline-flex cursor-pointer items-center gap-1.5 rounded-2xl bg-[#C53030] px-5 py-2 text-xs font-bold text-white shadow-xs hover:bg-[#A82323] disabled:opacity-60"
                                         >
-                                            <button
-                                                type="submit"
-                                                data-test="confirm-delete-user-button"
-                                            >
-                                                Delete account
-                                            </button>
-                                        </Button>
+                                            <Trash2 className="h-3.5 w-3.5" />
+                                            <span>
+                                                {processing ? 'Menghapus...' : 'Ya, Hapus Akun'}
+                                            </span>
+                                        </button>
                                     </DialogFooter>
                                 </>
                             )}
