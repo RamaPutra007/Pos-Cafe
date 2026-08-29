@@ -17,13 +17,12 @@ class CashierController extends Controller
             ->withCount('orders')
             ->latest()
             ->get()
-            ->map(function ($u, $idx) {
+            ->map(function ($u) {
                 return [
                     'id' => $u->id,
                     'name' => $u->name,
                     'email' => $u->email,
                     'role' => $u->role,
-                    'terminal' => 'Meja Kasir '.($idx + 1),
                     'orders_count' => $u->orders_count,
                     'created_at' => $u->created_at->format('d/m/Y'),
                 ];

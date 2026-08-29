@@ -60,7 +60,7 @@ interface DashboardProps {
         name: string;
         email: string;
         initials: string;
-        terminal: string;
+        role: string;
         is_online: boolean;
     }>;
 }
@@ -631,8 +631,8 @@ export default function Dashboard({
                                                 <h4 className="text-xs font-bold text-[#24140E]">
                                                     {staff.name}
                                                 </h4>
-                                                <p className="text-[11px] text-[#7A6353]">
-                                                    {staff.terminal}
+                                                <p className="text-[11px] text-[#7A6353] capitalize">
+                                                    {staff.role}
                                                 </p>
                                             </div>
                                         </div>

@@ -8,7 +8,6 @@ interface CashierRow {
     name: string;
     email: string;
     role: string;
-    terminal: string;
     orders_count: number;
     created_at: string;
 }
@@ -64,7 +63,7 @@ export default function CashiersIndex({ cashiers }: CashiersIndexProps) {
         <PosLayout
             title="Manajemen Kasir - Pos Cafe"
             headerTitle="Manajemen Staf Kasir"
-            headerSubtitle="Kelola data staf kasir, kredensial login, dan penugasan meja kasir kafe"
+            headerSubtitle="Kelola data staf kasir dan kredensial login akun kasir kafe"
             activeNav="cashiers"
             headerActions={
                 <button
@@ -88,9 +87,6 @@ export default function CashiersIndex({ cashiers }: CashiersIndexProps) {
                                         Nama Staf Kasir
                                     </th>
                                     <th className="px-4 py-3">Email Login</th>
-                                    <th className="px-4 py-3">
-                                        Posisi Meja Kasir
-                                    </th>
                                     <th className="px-4 py-3">
                                         Total Pesanan Diproses
                                     </th>
@@ -127,12 +123,6 @@ export default function CashiersIndex({ cashiers }: CashiersIndexProps) {
                                         </td>
                                         <td className="px-4 py-3.5 font-mono text-[#7A6353]">
                                             {c.email}
-                                        </td>
-                                        <td className="px-4 py-3.5">
-                                            <span className="inline-flex items-center gap-1 rounded-lg bg-[#EAF7ED] px-2 py-0.5 text-[11px] font-bold text-[#2E7D32]">
-                                                <span className="h-1.5 w-1.5 rounded-full bg-[#2E7D32]" />
-                                                {c.terminal}
-                                            </span>
                                         </td>
                                         <td className="px-4 py-3.5 font-bold text-[#6B4028]">
                                             {c.orders_count} transaksi

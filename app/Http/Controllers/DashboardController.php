@@ -91,19 +91,17 @@ class DashboardController extends Controller
                 ];
             });
 
-        // 5. Staff Status
         $staffMembers = User::where('role', 'cashier')
             ->get()
             ->map(function ($u, $idx) {
                 $initials = collect(explode(' ', $u->name))->map(fn ($s) => strtoupper(substr($s, 0, 1)))->take(2)->implode('');
-                $terminalNum = $idx + 1;
 
                 return [
                     'id' => $u->id,
                     'name' => $u->name,
                     'email' => $u->email,
+                    'role' => $u->role,
                     'initials' => $initials ?: 'ST',
-                    'terminal' => "Meja Kasir {$terminalNum} • Bertugas",
                     'is_online' => true,
                 ];
             });

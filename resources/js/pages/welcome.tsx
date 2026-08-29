@@ -99,28 +99,37 @@ export default function Welcome() {
                 top: 0,
                 behavior: 'smooth',
             });
-
             return;
         }
 
         const element = document.getElementById(id);
 
-        if (element) {
-            const header = document.querySelector('header');
-            const headerHeight = header ? header.offsetHeight : 70;
-            // Add comfortable breathing room so the section header aligns perfectly
-            const extraPadding = 20;
+        if (!element) return;
+
+        const header = document.querySelector('header');
+
+        // Jika header berubah ukuran ketika scroll,
+        // scroll sedikit terlebih dahulu agar header masuk kondisi compact
+        if (window.scrollY === 0) {
+            window.scrollTo({
+                top: 1,
+                behavior: 'auto',
+            });
+        }
+
+        requestAnimationFrame(() => {
+            const headerHeight = header?.getBoundingClientRect().height ?? 0;
+
             const elementPosition = element.getBoundingClientRect().top;
+
             const offsetPosition =
-                elementPosition +
-                window.pageYOffset -
-                (headerHeight + extraPadding);
+                elementPosition + window.scrollY - headerHeight;
 
             window.scrollTo({
                 top: Math.max(0, offsetPosition),
                 behavior: 'smooth',
             });
-        }
+        });
     };
 
     const handleContactSubmit = (e: FormEvent) => {
@@ -164,11 +173,10 @@ export default function Welcome() {
             <div className="relative min-h-screen w-full scroll-smooth bg-[#F7F2EB] font-sans text-[#2A1810]">
                 {/* ================= STICKY HEADER ================= */}
                 <header
-                    className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
-                        isScrolled
-                            ? 'border-b border-[#D5C2B1]/80 bg-[#F7F2EB]/95 py-3 shadow-md shadow-[#2A1810]/5 backdrop-blur-md'
-                            : 'border-b border-[#D5C2B1]/40 bg-transparent py-5 sm:py-6'
-                    }`}
+                    className={`fixed top-0 right-0 left-0 z-[99] transition-all duration-300 ${isScrolled
+                        ? 'border-b border-[#D5C2B1]/80 bg-[#F7F2EB]/95 py-3 shadow-md shadow-[#2A1810]/5 backdrop-blur-md'
+                        : 'border-b border-[#D5C2B1]/40 bg-transparent py-5 sm:py-6'
+                        }`}
                 >
                     <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 md:px-12 lg:px-16">
                         {/* Brand Logo */}
@@ -185,7 +193,7 @@ export default function Welcome() {
                                     Pos Cafe
                                 </span>
                                 <span className="hidden text-[10px] tracking-widest text-[#876D5B] uppercase sm:block">
-                                    Artisan Coffee &amp; POS
+                                    Coffee &amp; POS
                                 </span>
                             </div>
                         </button>
@@ -195,44 +203,40 @@ export default function Welcome() {
                             <button
                                 type="button"
                                 onClick={() => scrollToSection('beranda')}
-                                className={`cursor-pointer text-sm font-medium transition ${
-                                    activeSection === 'beranda'
-                                        ? 'font-bold text-[#24140E] underline decoration-[#7A4B2F] decoration-2 underline-offset-8'
-                                        : 'text-[#6B574B] hover:text-[#24140E]'
-                                }`}
+                                className={`cursor-pointer text-sm font-medium transition ${activeSection === 'beranda'
+                                    ? 'font-bold text-[#24140E] underline decoration-[#7A4B2F] decoration-2 underline-offset-8'
+                                    : 'text-[#6B574B] hover:text-[#24140E]'
+                                    }`}
                             >
                                 Beranda
                             </button>
                             <button
                                 type="button"
                                 onClick={() => scrollToSection('cerita')}
-                                className={`cursor-pointer text-sm font-medium transition ${
-                                    activeSection === 'cerita'
-                                        ? 'font-bold text-[#24140E] underline decoration-[#7A4B2F] decoration-2 underline-offset-8'
-                                        : 'text-[#6B574B] hover:text-[#24140E]'
-                                }`}
+                                className={`cursor-pointer text-sm font-medium transition ${activeSection === 'cerita'
+                                    ? 'font-bold text-[#24140E] underline decoration-[#7A4B2F] decoration-2 underline-offset-8'
+                                    : 'text-[#6B574B] hover:text-[#24140E]'
+                                    }`}
                             >
                                 Cerita Kami
                             </button>
                             <button
                                 type="button"
                                 onClick={() => scrollToSection('lokasi')}
-                                className={`cursor-pointer text-sm font-medium transition ${
-                                    activeSection === 'lokasi'
-                                        ? 'font-bold text-[#24140E] underline decoration-[#7A4B2F] decoration-2 underline-offset-8'
-                                        : 'text-[#6B574B] hover:text-[#24140E]'
-                                }`}
+                                className={`cursor-pointer text-sm font-medium transition ${activeSection === 'lokasi'
+                                    ? 'font-bold text-[#24140E] underline decoration-[#7A4B2F] decoration-2 underline-offset-8'
+                                    : 'text-[#6B574B] hover:text-[#24140E]'
+                                    }`}
                             >
                                 Lokasi &amp; Jam
                             </button>
                             <button
                                 type="button"
                                 onClick={() => scrollToSection('kontak')}
-                                className={`inline-flex cursor-pointer items-center gap-1.5 text-sm transition ${
-                                    activeSection === 'kontak'
-                                        ? 'font-bold text-[#24140E] underline decoration-[#7A4B2F] decoration-2 underline-offset-8'
-                                        : 'font-semibold text-[#7A4B2F] hover:text-[#24140E]'
-                                }`}
+                                className={`inline-flex cursor-pointer items-center gap-1.5 text-sm transition ${activeSection === 'kontak'
+                                    ? 'font-bold text-[#24140E] underline decoration-[#7A4B2F] decoration-2 underline-offset-8'
+                                    : 'font-semibold text-[#7A4B2F] hover:text-[#24140E]'
+                                    }`}
                             >
                                 <MessageCircle className="h-4 w-4 text-[#7A4B2F]" />
                                 <span>Kontak Kami</span>
@@ -308,9 +312,7 @@ export default function Welcome() {
                                 <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
                                     <button
                                         type="button"
-                                        onClick={() =>
-                                            scrollToSection('kontak')
-                                        }
+                                        onClick={() => scrollToSection('kontak')}
                                         className="group inline-flex cursor-pointer items-center gap-2.5 rounded-xl bg-[#24140E] px-6 py-3.5 text-sm font-semibold text-[#FDF8F3] shadow-lg shadow-[#24140E]/20 transition duration-200 hover:scale-[1.02] hover:bg-[#3D2319] active:scale-[0.98]"
                                     >
                                         <MessageCircle className="h-4 w-4 text-[#E8DCCF] transition-transform group-hover:scale-110" />
@@ -319,9 +321,7 @@ export default function Welcome() {
 
                                     <button
                                         type="button"
-                                        onClick={() =>
-                                            scrollToSection('lokasi')
-                                        }
+                                        onClick={() => scrollToSection('lokasi')}
                                         className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-[#C5AE9C] bg-[#EFE8DF]/80 px-6 py-3.5 text-sm font-semibold text-[#24140E] backdrop-blur-sm transition duration-200 hover:scale-[1.02] hover:bg-[#E8DDCF] active:scale-[0.98]"
                                     >
                                         <MapPin className="h-4 w-4 text-[#7A4B2F]" />
@@ -334,9 +334,7 @@ export default function Welcome() {
                                     {/* Item 1 */}
                                     <button
                                         type="button"
-                                        onClick={() =>
-                                            scrollToSection('cerita')
-                                        }
+                                        onClick={() => scrollToSection('cerita')}
                                         className="group flex cursor-pointer items-center gap-3 text-left transition hover:opacity-80"
                                     >
                                         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#D5C2B1] bg-[#EFE8DF]/90 text-[#6B4B36] shadow-sm transition group-hover:scale-105 group-hover:bg-[#E5D6C7]">
@@ -355,9 +353,7 @@ export default function Welcome() {
                                     {/* Item 2 */}
                                     <button
                                         type="button"
-                                        onClick={() =>
-                                            scrollToSection('cerita')
-                                        }
+                                        onClick={() => scrollToSection('cerita')}
                                         className="group flex cursor-pointer items-center gap-3 text-left transition hover:opacity-80"
                                     >
                                         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#D5C2B1] bg-[#EFE8DF]/90 text-[#6B4B36] shadow-sm transition group-hover:scale-105 group-hover:bg-[#E5D6C7]">
@@ -376,9 +372,7 @@ export default function Welcome() {
                                     {/* Item 3 */}
                                     <button
                                         type="button"
-                                        onClick={() =>
-                                            scrollToSection('lokasi')
-                                        }
+                                        onClick={() => scrollToSection('lokasi')}
                                         className="group flex cursor-pointer items-center gap-3 text-left transition hover:opacity-80"
                                     >
                                         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#D5C2B1] bg-[#EFE8DF]/90 text-[#6B4B36] shadow-sm transition group-hover:scale-105 group-hover:bg-[#E5D6C7]">

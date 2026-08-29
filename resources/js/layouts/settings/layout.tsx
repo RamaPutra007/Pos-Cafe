@@ -1,6 +1,6 @@
 import { Link, usePage } from '@inertiajs/react';
 import { motion } from 'framer-motion';
-import { Palette, Shield, User } from 'lucide-react';
+import { Shield, User } from 'lucide-react';
 import type { PropsWithChildren } from 'react';
 import PosLayout from '@/layouts/pos-layout';
 import type { Auth } from '@/types';
@@ -23,13 +23,6 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
             href: '/settings/security',
             icon: Shield,
             isActive: url.startsWith('/settings/security'),
-        },
-        {
-            title: 'Tampilan & Tema',
-            subtitle: 'Mode terang, gelap & sistem',
-            href: '/settings/appearance',
-            icon: Palette,
-            isActive: url.startsWith('/settings/appearance'),
         },
     ];
 
